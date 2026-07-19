@@ -1,24 +1,87 @@
-import { siteConfig } from "@/content/site";
+"use client";
+
+import { useCallback, useEffect, useRef } from "react";
+
 import { ContactLink } from "@/components/ui/ContactLink";
+import { siteConfig } from "@/content/site";
+import { useIsCompact } from "@/lib/useNavState";
+
+import styles from "./MobileNav.module.css";
 
 export function MobileNav() {
+  const isCompact = useIsCompact();
+  const drawerRef = useRef<HTMLDialogElement>(null);
+
+  // A modal dialog gives focus trapping, Escape and focus restore natively;
+  // only background scroll still needs locking.
+  const open = useCallback(() => {
+    drawerRef.current?.showModal();
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  const close = useCallback(() => {
+    drawerRef.current?.close();
+  }, []);
+
+  useEffect(() => {
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+
+    const onClose = () => {
+      document.body.style.overflow = "";
+    };
+
+    drawer.addEventListener("close", onClose);
+    return () => {
+      drawer.removeEventListener("close", onClose);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
-    <nav className="mobile-nav" aria-label="Мобильная навигация">
-      <ContactLink>Telegram</ContactLink>
-      <details>
-        <summary>Меню</summary>
-        <div className="mobile-nav__drawer">
-          <p>{siteConfig.name}</p>
-          <ul>
+    <>
+      <nav
+        className={styles.nav}
+        aria-label="Мобильная навигация"
+        data-compact={isCompact}
+      >
+        <ContactLink className={`${styles.capsule} ${styles.telegram}`}>
+          Telegram
+        </ContactLink>
+        <button
+          type="button"
+          className={`${styles.capsule} ${styles.menu}`}
+          onClick={open}
+          aria-haspopup="dialog"
+        >
+          Меню
+        </button>
+      </nav>
+
+      <dialog ref={drawerRef} className={styles.drawer} aria-label="Меню разделов">
+        <div className={styles.drawerInner}>
+          <div className={styles.drawerHead}>
+            <p className={styles.drawerTitle}>{siteConfig.name}</p>
+            <button
+              type="button"
+              className={styles.close}
+              onClick={close}
+              aria-label="Закрыть меню"
+            >
+              ✕
+            </button>
+          </div>
+          <ul className={styles.drawerList}>
             {siteConfig.navigation.map((item) => (
               <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
+                <a className={styles.drawerLink} href={item.href} onClick={close}>
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>
         </div>
-      </details>
-    </nav>
+      </dialog>
+    </>
   );
 }
-

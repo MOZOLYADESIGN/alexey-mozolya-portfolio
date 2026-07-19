@@ -107,6 +107,9 @@ body {
   font-size: var(--font-body);
   line-height: var(--leading-body);
   text-rendering: optimizeLegibility;
+
+  /* Long Russian words in display sizes must never push the page sideways. */
+  overflow-wrap: break-word;
 }
 
 h1,

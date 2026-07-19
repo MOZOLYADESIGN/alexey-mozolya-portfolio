@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ru">
-      <body>
+      <body id="top">
         <a className="skip-link" href="#main-content">
           Перейти к содержанию
         </a>
