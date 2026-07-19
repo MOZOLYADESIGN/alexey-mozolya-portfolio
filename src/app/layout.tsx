@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/navigation/MobileNav";
 import { siteConfig } from "@/content/site";
 
 import "./globals.css";
+import "./scaffold.css";
 
 export const metadata: Metadata = {
   title: siteConfig.seoTitle,
