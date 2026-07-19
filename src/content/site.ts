@@ -7,8 +7,10 @@ export const siteConfig = {
     "Алексей Мозоля — дизайнер интерфейсов и бренд-стратег. Проектирую сайты и цифровые продукты, развиваю визуальные системы и коммуникацию брендов.",
   hero: {
     eyebrow: "Дизайн сайтов и цифровых продуктов",
-    title:
-      "Прокачиваю смыслы, визуал, стратегию и коммуникацию цифровых продуктов",
+    // The phrase is fixed. It is split only so the tail can be set in the
+    // serif italic accent; `heroTitle` below keeps the full string intact.
+    titleLead: "Прокачиваю смыслы, визуал, стратегию и коммуникацию",
+    titleAccent: "цифровых продуктов",
     subtitle:
       "Помогаю цифровым продуктам становиться сильнее по смыслу и визуально: анализирую продукт, нахожу точки роста и собираю стратегию развития.",
   },
@@ -40,4 +42,6 @@ export const siteConfig = {
 } as const;
 
 export const telegramUrl = siteConfig.contacts[0].href;
+
+export const heroTitle = `${siteConfig.hero.titleLead} ${siteConfig.hero.titleAccent}`;
 

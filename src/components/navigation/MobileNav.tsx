@@ -4,13 +4,20 @@ import { useCallback, useEffect, useRef } from "react";
 
 import { ContactLink } from "@/components/ui/ContactLink";
 import { siteConfig } from "@/content/site";
-import { useIsCompact } from "@/lib/useNavState";
+import { HERO_CTA_ID } from "@/lib/anchors";
+import { useIsCompact, useIsElementVisible } from "@/lib/useNavState";
 
 import styles from "./MobileNav.module.css";
 
 export function MobileNav() {
   const isCompact = useIsCompact();
   const drawerRef = useRef<HTMLDialogElement>(null);
+
+  // While the hero CTA is on screen the key action is already available, so
+  // the bar carries only the menu. Once the CTA scrolls away, Telegram
+  // reappears down here and the menu slides aside to make room.
+  const heroCtaVisible = useIsElementVisible(HERO_CTA_ID);
+  const showTelegram = !heroCtaVisible;
 
   // A modal dialog gives focus trapping, Escape and focus restore natively;
   // only background scroll still needs locking.
@@ -45,7 +52,12 @@ export function MobileNav() {
         aria-label="Мобильная навигация"
         data-compact={isCompact}
       >
-        <ContactLink className={`${styles.capsule} ${styles.telegram}`}>
+        <ContactLink
+          className={`${styles.capsule} ${styles.telegram}`}
+          data-visible={showTelegram}
+          tabIndex={showTelegram ? undefined : -1}
+          aria-hidden={showTelegram ? undefined : true}
+        >
           Telegram
         </ContactLink>
         <button

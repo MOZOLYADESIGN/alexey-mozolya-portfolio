@@ -1,11 +1,11 @@
-import "@fontsource-variable/onest";
-import "@fontsource-variable/lora/wght-italic.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import { DesktopNav } from "@/components/navigation/DesktopNav";
 import { MobileNav } from "@/components/navigation/MobileNav";
 import { siteConfig } from "@/content/site";
+
+import { lora, onest } from "./fonts";
 
 import "./globals.css";
 import "./scaffold.css";
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="ru">
-      <body id="top">
+    <html lang="ru" className={`${onest.variable} ${lora.variable}`}>
+      <body>
         <a className="skip-link" href="#main-content">
           Перейти к содержанию
         </a>

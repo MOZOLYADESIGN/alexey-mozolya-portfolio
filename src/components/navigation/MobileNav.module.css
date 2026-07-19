@@ -42,12 +42,37 @@
   margin-block: -4px;
 }
 
+/* Alone, the menu sits centred. When Telegram expands it pushes the menu
+   aside to the right edge. */
+.nav {
+  justify-content: center;
+}
+
 .telegram {
   flex: 1;
   border-color: var(--color-text);
   background: var(--color-text);
   color: var(--color-surface);
   font-weight: 500;
+
+  /* Collapsed rather than unmounted so it can animate both ways.
+     `visibility: hidden` also takes it out of the tab order. */
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width var(--duration-reveal) var(--ease-standard),
+    padding var(--duration-reveal) var(--ease-standard),
+    opacity var(--duration-fast) var(--ease-standard),
+    visibility var(--duration-reveal) var(--ease-standard);
+}
+
+.telegram[data-visible="false"] {
+  max-width: 0;
+  padding-inline: 0;
+  border-width: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .menu {

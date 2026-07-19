@@ -37,6 +37,31 @@ export function useIsCompact() {
 }
 
 /**
+ * Whether the element with this id is currently on screen.
+ *
+ * Defaults to `false` so a caller that shows its own fallback CTA does the
+ * right thing when the watched element does not exist on the page at all.
+ */
+export function useIsElementVisible(id: string) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [id]);
+
+  return isVisible;
+}
+
+/**
  * Id of the section currently occupying the middle of the viewport, or null
  * near the very top of the page.
  */

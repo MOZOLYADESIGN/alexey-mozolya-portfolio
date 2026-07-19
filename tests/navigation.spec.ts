@@ -82,6 +82,29 @@ test.describe("mobile drawer", () => {
     expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
   });
 
+  test("telegram capsule appears only once the hero CTA leaves the screen", async ({ page }) => {
+    await page.goto("/");
+    const telegram = page.locator("nav[aria-label='Мобильная навигация'] a");
+    const menu = page.getByRole("button", { name: "Меню" });
+
+    // Hero CTA on screen: only the menu is offered.
+    await expect(telegram).toBeHidden();
+    const menuAlone = (await menu.boundingBox())!;
+
+    await page.locator("#services").scrollIntoViewIfNeeded();
+    await page.waitForTimeout(600);
+
+    await expect(telegram).toBeVisible();
+    expect((await telegram.boundingBox())!.width).toBeGreaterThan(100);
+    // The menu slides aside — from centred to the right edge.
+    expect((await menu.boundingBox())!.x).toBeGreaterThan(menuAlone.x);
+
+    // Back at the hero it collapses again and leaves the tab order.
+    await page.locator("#top").scrollIntoViewIfNeeded();
+    await page.waitForTimeout(600);
+    await expect(telegram).toBeHidden();
+  });
+
   test("desktop capsule is hidden", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("nav[aria-label='Основная навигация']")).toBeHidden();
