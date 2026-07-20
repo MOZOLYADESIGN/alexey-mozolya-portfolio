@@ -34,6 +34,7 @@ export function ProjectsSection() {
                   className={styles.cover}
                   style={project.gradient ? { background: project.gradient } : undefined}
                   aria-hidden="true"
+                  data-cover="true"
                 />
                 <span className={styles.panel} data-panel="true">
                   <span className={styles.revealGroup} data-reveal="group">

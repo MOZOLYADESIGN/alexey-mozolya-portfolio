@@ -103,75 +103,25 @@
   font-size: var(--font-meta);
 }
 
+/*
+ * From the 768px breakpoint the caption is plain text under the image, per the
+ * Figma spec: no overlay, no blur, the whole cover always visible. The overlay
+ * fade is a phone-only treatment — on the two-column layout it swallowed the
+ * small covers.
+ */
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-8) var(--space-6);
     margin-top: var(--space-8);
   }
-}
-
-/*
- * Fine pointer only: the caption floats out of a blur and sits over the lower
- * edge of the image. Coarse pointers keep the flow layout above — a decorative
- * blur on a phone is banned, and the text is simply always visible there.
- */
-@media (hover: hover) and (pointer: fine) {
-  .frame {
-    position: relative;
-  }
 
   .panel {
-    inset-inline: var(--space-5);
-
-    /* Reset the mobile fade — here the caption is a floating frosted patch. */
-    align-content: center;
-
-    /* Anchored to the bottom edge, so the overhang is a fixed distance however
-       long the caption runs — a percentage would grow with the text and land
-       on the title below. */
-    translate: 0 22px;
-
-    /* Generous padding keeps the text clear of the feathered rim below. */
-    padding: var(--space-6) var(--space-6);
-    border-radius: var(--radius-lg);
-
-    /* Bright, heavily blurred glass. The border is removed by feathering the
-       edges to nothing with the mask below — not by thinning the fill — so the
-       body stays a bright, readable white while the rim dissolves into the
-       image. No shadow: a shadow is exactly the perceptible border to avoid. */
-    background: rgb(255 255 255 / 0.9);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    box-shadow: none;
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%),
-      linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%),
-      linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
-    mask-composite: intersect;
-    opacity: 0;
-
-    /* Only opacity, transform and a small blur animate — never the backdrop. */
-    filter: blur(12px);
-    transition:
-      opacity 320ms var(--ease-standard),
-      translate 320ms var(--ease-standard),
-      filter 320ms var(--ease-standard);
-  }
-
-  .card:hover .panel,
-  .card:focus-visible .panel {
-    translate: 0 34px;
-    opacity: 1;
-    filter: blur(0);
-  }
-
-  /* The overhang has to clear the caption line underneath. */
-  .meta {
-    padding-top: var(--space-7);
+    position: static;
+    align-content: start;
+    padding: var(--space-4) 0 0;
+    background: none;
+    border-radius: 0;
   }
 }
 
@@ -179,11 +129,5 @@
 @media (min-width: 1024px) {
   .item:nth-child(even) {
     margin-top: var(--space-8);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .panel {
-    transition: none;
   }
 }

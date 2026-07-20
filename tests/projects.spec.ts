@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const CARD = "#projects li a";
 
@@ -48,74 +48,42 @@ test.describe("projects", () => {
   });
 });
 
-test.describe("projects on a fine pointer", () => {
+test.describe("projects from 768px up", () => {
   test.skip(({ isMobile }) => Boolean(isMobile));
 
-  const panelState = (card: Locator) =>
-    card.locator('[data-panel="true"]').evaluate((node) => {
-      const style = getComputedStyle(node);
-      const box = node.getBoundingClientRect();
-      const image = node.parentElement!.getBoundingClientRect();
-      return {
-        opacity: Number(style.opacity),
-        blurred: style.filter !== "none" && style.filter !== "blur(0px)",
-        // Positive while the patch still covers the lower edge of the image.
-        overlap: image.bottom - box.top,
-        hangsBelow: box.bottom - image.bottom,
-      };
+  test("caption sits under the image, plain and always visible", async ({ page }) => {
+    await page.goto("/");
+    const card = page.locator(CARD).first();
+    await card.scrollIntoViewIfNeeded();
+
+    const cover = (await card.locator('[data-cover="true"]').boundingBox())!;
+    const panel = (await card.locator('[data-panel="true"]').boundingBox())!;
+
+    const style = await card.locator('[data-panel="true"]').evaluate((node) => {
+      const cs = getComputedStyle(node);
+      return { opacity: cs.opacity, backdrop: cs.backdropFilter, background: cs.backgroundImage };
     });
 
-  test("caption emerges from a blur over the lower edge, grid height unchanged", async ({
-    page,
-  }) => {
-    await page.goto("/");
-    const card = page.locator(CARD).first();
-    await card.scrollIntoViewIfNeeded();
-
-    const gridBefore = (await page.locator("#projects ul").boundingBox())!.height;
-    const before = await panelState(card);
-    expect(before.opacity).toBeLessThan(0.1);
-    expect(before.blurred).toBe(true);
-
-    await card.hover();
-    await page.waitForTimeout(600);
-
-    const after = await panelState(card);
-    const gridAfter = (await page.locator("#projects ul").boundingBox())!.height;
-
-    expect(after.opacity).toBeGreaterThan(0.9);
-    expect(after.blurred).toBe(false);
-    // It sits across the bottom edge: part on the image, part below it.
-    expect(after.overlap).toBeGreaterThan(0);
-    expect(after.hangsBelow).toBeGreaterThan(0);
-    // And nothing in the gallery moved.
-    expect(gridAfter).toBeCloseTo(gridBefore, 0);
+    // Below the cover, never over it — the whole image stays visible.
+    expect(panel.y).toBeGreaterThanOrEqual(cover.y + cover.height - 1);
+    // No hidden state, no frosted plate, no decorative blur.
+    expect(style.opacity).toBe("1");
+    expect(["none", ""]).toContain(style.backdrop);
+    expect(style.background).toBe("none");
   });
 
-  test("the caption never covers the title underneath", async ({ page }) => {
+  test("hovering a card leaves the cover fully visible", async ({ page }) => {
     await page.goto("/");
     const card = page.locator(CARD).first();
     await card.scrollIntoViewIfNeeded();
+
+    const before = (await card.locator('[data-cover="true"]').boundingBox())!;
     await card.hover();
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(300);
+    const after = (await card.locator('[data-cover="true"]').boundingBox())!;
 
-    const panel = (await card.locator('[data-panel="true"]').boundingBox())!;
-    // Against the title itself, not its box: the box starts at the padding
-    // edge, which the overhang is allowed to sit in.
-    const title = (await card.locator('[data-meta="true"] > span').first().boundingBox())!;
-    expect(panel.y + panel.height).toBeLessThanOrEqual(title.y);
-  });
-
-  test("keyboard focus reveals the same information as hover", async ({ page }) => {
-    await page.goto("/");
-    const card = page.locator(CARD).first();
-    await card.scrollIntoViewIfNeeded();
-    await card.focus();
-    await page.waitForTimeout(600);
-
-    const state = await panelState(card);
-    expect(state.opacity).toBeGreaterThan(0.9);
-    expect(state.blurred).toBe(false);
+    // The cover does not move or get covered on hover.
+    expect(after).toEqual(before);
   });
 });
 
