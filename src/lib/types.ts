@@ -45,6 +45,15 @@ export interface Product {
   ctaLabel: string;
 }
 
+export interface Principle {
+  id: string;
+  /** Two-digit marker shown while there is no illustration. */
+  index: string;
+  title: string;
+  body: string;
+  illustration: { src: string; alt: string } | null;
+}
+
 export interface Thought {
   id: string;
   title: string;

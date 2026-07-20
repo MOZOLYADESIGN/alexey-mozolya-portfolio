@@ -79,7 +79,11 @@ test.describe("mobile drawer", () => {
 
     const focused = await page.evaluate(() => document.activeElement?.textContent);
     expect(focused).toBe("Меню");
-    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+    // The `close` event is queued as a task, so the unlock lands a tick after
+    // the dialog is already hidden.
+    await expect
+      .poll(() => page.evaluate(() => document.body.style.overflow))
+      .toBe("");
   });
 
   test("telegram capsule appears only once the hero CTA leaves the screen", async ({ page }) => {
