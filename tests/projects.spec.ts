@@ -130,6 +130,22 @@ test.describe("projects on a coarse pointer", () => {
     await expect(lines.first()).toBeVisible();
     expect(await lines.first().evaluate((n) => getComputedStyle(n).opacity)).toBe("1");
   });
+
+  test("the caption sits on a fade to the page background, not a frosted plate", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const panel = page.locator(`${CARD} [data-panel="true"]`).first();
+    await panel.scrollIntoViewIfNeeded();
+    const style = await panel.evaluate((node) => {
+      const cs = getComputedStyle(node);
+      return { backgroundImage: cs.backgroundImage, backdrop: cs.backdropFilter };
+    });
+    // A gradient into the background — the desktop frosted look must not leak
+    // onto touch, where a decorative blur is banned.
+    expect(style.backgroundImage).toContain("gradient");
+    expect(["none", ""]).toContain(style.backdrop);
+  });
 });
 
 for (const width of [320, 390, 768, 1024, 1440]) {
