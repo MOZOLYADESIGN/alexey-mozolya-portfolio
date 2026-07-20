@@ -21,7 +21,7 @@ test.describe("about", () => {
   });
 
   test("author text stays inside the 350-650 character range", async ({ page }) => {
-    const paragraphs = await page.locator("#about h2 ~ p").allInnerTexts();
+    const paragraphs = await page.locator("#about h2 ~ * p").allInnerTexts();
     const length = paragraphs.join(" ").length;
     console.log({ length });
     expect(length).toBeGreaterThanOrEqual(350);

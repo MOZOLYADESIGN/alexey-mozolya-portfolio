@@ -66,6 +66,10 @@
   font-weight: 600;
 }
 
+.paragraph + .paragraph {
+  margin-top: var(--space-5);
+}
+
 .paragraph {
   max-width: 52ch;
   color: var(--color-muted);

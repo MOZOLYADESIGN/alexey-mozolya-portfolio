@@ -1,4 +1,10 @@
-import { aboutBody, aboutPortrait, aboutTitle, principles } from "@/content/about";
+import {
+  aboutBody,
+  aboutBodyIsPlaceholder,
+  aboutPortrait,
+  aboutTitle,
+  principles,
+} from "@/content/about";
 
 import styles from "./AboutSection.module.css";
 
@@ -32,11 +38,15 @@ export function AboutSection() {
           <h2 className={styles.title} id="about-title">
             {aboutTitle}
           </h2>
-          {aboutBody.map((paragraph) => (
-            <p className={styles.paragraph} key={paragraph.slice(0, 24)}>
-              {paragraph}
-            </p>
-          ))}
+          {/* Invisible to readers, but greppable — final QA fails while any
+              placeholder copy is still in the build. */}
+          <div data-placeholder-copy={aboutBodyIsPlaceholder ? "true" : undefined}>
+            {aboutBody.map((paragraph) => (
+              <p className={styles.paragraph} key={paragraph.slice(0, 24)}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
 
