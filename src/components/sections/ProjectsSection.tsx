@@ -35,7 +35,7 @@ export function ProjectsSection() {
                   style={project.gradient ? { background: project.gradient } : undefined}
                   aria-hidden="true"
                 />
-                <span className={styles.reveal}>
+                <span className={styles.panel} data-panel="true">
                   <span className={styles.revealGroup} data-reveal="group">
                     <span className={styles.revealLabel}>Идея</span>
                     <span className={styles.revealLine} data-reveal="line">{project.idea}</span>
@@ -47,7 +47,7 @@ export function ProjectsSection() {
                 </span>
               </span>
 
-              <span className={styles.meta}>
+              <span className={styles.meta} data-meta="true">
                 <span className={styles.name}>{project.title}</span>
                 <span className={styles.category}>{project.category}</span>
               </span>
