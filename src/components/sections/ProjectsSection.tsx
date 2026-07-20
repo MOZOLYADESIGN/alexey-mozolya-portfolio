@@ -1,32 +1,60 @@
 import { ContactLink } from "@/components/ui/ContactLink";
-import { SectionShell } from "@/components/ui/SectionShell";
-import { projects } from "@/content/projects";
+import { projects, projectsArePlaceholders } from "@/content/projects";
+
+import styles from "./ProjectsSection.module.css";
 
 export function ProjectsSection() {
   const visibleProjects = projects.filter((project) => project.isPublished);
 
+  if (visibleProjects.length === 0) return null;
+
   return (
-    <SectionShell id="projects" eyebrow="Работы" title="Отобранные проекты">
-      <div className="project-grid">
-        {visibleProjects.map((project) => (
-          <ContactLink className="project-card" key={project.id}>
-            <span
-              className="project-card__cover"
-              style={project.gradient ? { background: project.gradient } : undefined}
-              aria-hidden={project.isPlaceholder}
-            />
-            <span className="project-card__meta">
-              <strong>{project.title}</strong>
-              <span>{project.category}</span>
-            </span>
-            <span className="project-card__reveal">
-              <span>{project.idea}</span>
-              <span>{project.result}</span>
-            </span>
-          </ContactLink>
-        ))}
+    <section id="projects" className={styles.projects} aria-labelledby="projects-title">
+      <div className={styles.header}>
+        <p className={styles.eyebrow}>Работы</p>
+        <h2 className={styles.title} id="projects-title">
+          Отобранные проекты
+        </h2>
       </div>
-    </SectionShell>
+
+      <ul
+        className={styles.grid}
+        data-placeholder-copy={projectsArePlaceholders ? "true" : undefined}
+      >
+        {visibleProjects.map((project) => (
+          <li className={styles.item} key={project.id}>
+            <ContactLink
+              className={styles.card}
+              aria-label={`Обсудить в Telegram: ${project.title}, ${project.category}`}
+            >
+              <span className={styles.frame}>
+                {/* Decorative until a real cover exists — the card is named by
+                    its aria-label, so nothing is lost to a screen reader. */}
+                <span
+                  className={styles.cover}
+                  style={project.gradient ? { background: project.gradient } : undefined}
+                  aria-hidden="true"
+                />
+                <span className={styles.reveal}>
+                  <span className={styles.revealGroup} data-reveal="group">
+                    <span className={styles.revealLabel}>Идея</span>
+                    <span className={styles.revealLine} data-reveal="line">{project.idea}</span>
+                  </span>
+                  <span className={styles.revealGroup} data-reveal="group">
+                    <span className={styles.revealLabel}>Результат</span>
+                    <span className={styles.revealLine} data-reveal="line">{project.result}</span>
+                  </span>
+                </span>
+              </span>
+
+              <span className={styles.meta}>
+                <span className={styles.name}>{project.title}</span>
+                <span className={styles.category}>{project.category}</span>
+              </span>
+            </ContactLink>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
-
