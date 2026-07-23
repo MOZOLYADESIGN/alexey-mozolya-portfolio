@@ -29,6 +29,28 @@ test.describe("services", () => {
     expect(await page.locator("#services form, #services dialog").count()).toBe(0);
   });
 
+  test("animates the panel open, but not under reduced motion", async ({ page }) => {
+    // The animation is created synchronously inside the click handler, so a
+    // click-then-read in one evaluate is deterministic — no timing race.
+    const runningWhenAnimated = await page.locator(CARD).first().evaluate((details) => {
+      const summary = details.querySelector("summary")!;
+      summary.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+      const body = summary.nextElementSibling as HTMLElement;
+      return body.getAnimations().length;
+    });
+    expect(runningWhenAnimated).toBeGreaterThan(0);
+
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    const runningWhenReduced = await page.locator(CARD).nth(1).evaluate((details) => {
+      const summary = details.querySelector("summary")!;
+      summary.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+      const body = summary.nextElementSibling as HTMLElement;
+      return { anims: body.getAnimations().length, open: (details as HTMLDetailsElement).open };
+    });
+    expect(runningWhenReduced.anims).toBe(0);
+    expect(runningWhenReduced.open).toBe(true);
+  });
+
   test("has no accessibility violations", async ({ page }) => {
     // Open one so the expanded content is in scope too.
     await page.locator(CARD).first().locator("summary").click();

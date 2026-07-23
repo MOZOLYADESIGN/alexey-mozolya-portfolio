@@ -1,26 +1,83 @@
 "use client";
 
-import { useRef, type SyntheticEvent } from "react";
+import { useRef, type MouseEvent } from "react";
 
 import { ContactLink } from "@/components/ui/ContactLink";
-import { services, servicesHavePlaceholders } from "@/content/services";
+import { services } from "@/content/services";
 
 import styles from "./ServicesSection.module.css";
 
+const DURATION = 300;
+
 export function ServicesSection() {
   const listRef = useRef<HTMLDivElement>(null);
+  // One running animation per card, so a fast re-click cancels the previous.
+  const anims = useRef(new WeakMap<HTMLElement, Animation>()).current;
 
-  // Desktop keeps every card independent; on phones the list behaves like an
-  // accordion — opening one closes the rest. Enforced in JS rather than the
-  // native `name` attribute because that would be exclusive on every width.
-  const handleToggle = (event: SyntheticEvent<HTMLDetailsElement>) => {
-    const opened = event.currentTarget;
-    if (!opened.open) return;
-    if (!window.matchMedia("(max-width: 767px)").matches) return;
+  const prefersReduced = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    for (const card of listRef.current?.querySelectorAll("details") ?? []) {
-      if (card !== opened) card.open = false;
+  const bodyOf = (details: HTMLDetailsElement) =>
+    details.querySelector<HTMLElement>(`.${styles.body}`);
+
+  const open = (details: HTMLDetailsElement) => {
+    const body = bodyOf(details);
+    details.open = true;
+    if (!body || prefersReduced()) return;
+
+    anims.get(body)?.cancel();
+    const target = body.scrollHeight;
+    const anim = body.animate(
+      { height: ["0px", `${target}px`], opacity: [0, 1] },
+      { duration: DURATION, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" },
+    );
+    anims.set(body, anim);
+    anim.onfinish = () => {
+      body.style.height = "";
+      anims.delete(body);
+    };
+  };
+
+  const close = (details: HTMLDetailsElement) => {
+    const body = bodyOf(details);
+    if (!body || prefersReduced()) {
+      details.open = false;
+      return;
     }
+
+    anims.get(body)?.cancel();
+    const start = body.scrollHeight;
+    const anim = body.animate(
+      { height: [`${start}px`, "0px"], opacity: [1, 0] },
+      { duration: DURATION, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" },
+    );
+    anims.set(body, anim);
+    anim.onfinish = () => {
+      details.open = false;
+      body.style.height = "";
+      anims.delete(body);
+    };
+  };
+
+  const handleSummaryClick = (event: MouseEvent<HTMLElement>) => {
+    // Take over the toggle so open and close can both animate.
+    event.preventDefault();
+    const details = event.currentTarget.parentElement as HTMLDetailsElement;
+
+    if (details.open) {
+      close(details);
+      return;
+    }
+
+    // Phones behave like an accordion: opening one closes the rest.
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      for (const other of listRef.current?.querySelectorAll("details") ?? []) {
+        if (other !== details && other.open) close(other as HTMLDetailsElement);
+      }
+    }
+
+    open(details);
   };
 
   return (
@@ -32,14 +89,10 @@ export function ServicesSection() {
         </h2>
       </div>
 
-      <div
-        className={styles.list}
-        ref={listRef}
-        data-placeholder-copy={servicesHavePlaceholders ? "true" : undefined}
-      >
+      <div className={styles.list} ref={listRef}>
         {services.map((service) => (
-          <details key={service.id} className={styles.card} onToggle={handleToggle}>
-            <summary className={styles.summary}>
+          <details key={service.id} className={styles.card}>
+            <summary className={styles.summary} onClick={handleSummaryClick}>
               <span className={styles.name}>{service.title}</span>
               <span className={styles.aside}>
                 <span className={styles.price}>{service.price}</span>
@@ -48,16 +101,18 @@ export function ServicesSection() {
             </summary>
 
             <div className={styles.body}>
-              <p className={styles.text}>{service.summary}</p>
-              <p className={styles.result}>{service.result}</p>
-              {service.details.length > 0 ? (
-                <ul className={styles.details}>
-                  {service.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
-                  ))}
-                </ul>
-              ) : null}
-              <ContactLink className={styles.cta}>Обсудить задачу</ContactLink>
+              <div className={styles.bodyInner}>
+                <p className={styles.text}>{service.summary}</p>
+                <p className={styles.result}>{service.result}</p>
+                {service.details.length > 0 ? (
+                  <ul className={styles.details}>
+                    {service.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                <ContactLink className={styles.cta}>Обсудить задачу</ContactLink>
+              </div>
             </div>
           </details>
         ))}
