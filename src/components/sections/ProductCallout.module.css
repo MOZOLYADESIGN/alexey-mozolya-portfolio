@@ -1,0 +1,130 @@
+.callout {
+  width: min(100% - (var(--page-gutter) * 2), var(--container));
+  margin-inline: auto;
+  padding-block: var(--section-space);
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-6);
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.lead > * + * {
+  margin-top: var(--space-4);
+}
+
+.eyebrow {
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.context {
+  max-width: 46ch;
+  color: var(--color-muted);
+  font-size: var(--font-body-lg);
+}
+
+.title {
+  max-width: 20ch;
+  font-weight: 600;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.fact {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.factTerm {
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.factValue {
+  font-size: var(--font-body-lg);
+}
+
+.included {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  list-style: none;
+}
+
+.includedItem {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-meta);
+}
+
+.action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.price {
+  font-size: var(--font-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+}
+
+.cta {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  padding-inline: var(--space-6);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.cta:hover {
+  border-color: #262624;
+  background: #262624;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  .panel > * {
+    min-width: 0;
+  }
+
+  /* Price and CTA sit apart on the same line on wide layouts. */
+  .action {
+    justify-content: space-between;
+  }
+}

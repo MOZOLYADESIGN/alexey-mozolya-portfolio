@@ -19,7 +19,7 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
-        <ProductCallout productId="consultation" sectionId="products" />
+        <ProductCallout productId="consultation" sectionId="products" eyebrow="Первый шаг" />
         <ProofSection />
         <ServicesSection />
         <ThoughtsSection />
