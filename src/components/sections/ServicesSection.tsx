@@ -7,12 +7,15 @@ import { services } from "@/content/services";
 
 import styles from "./ServicesSection.module.css";
 
-const DURATION = 300;
+// Snappy but smooth: a quick expressive ease-out for the reveal, a touch
+// shorter and calmer on the way back.
+const OPEN_MS = 420;
+const CLOSE_MS = 260;
+const EASE_OPEN = "cubic-bezier(0.16, 1, 0.3, 1)";
+const EASE_CLOSE = "cubic-bezier(0.4, 0, 0.6, 1)";
 
 export function ServicesSection() {
   const listRef = useRef<HTMLDivElement>(null);
-  // One running animation per card, so a fast re-click cancels the previous.
-  const anims = useRef(new WeakMap<HTMLElement, Animation>()).current;
 
   const prefersReduced = () =>
     typeof window !== "undefined" &&
@@ -21,21 +24,31 @@ export function ServicesSection() {
   const bodyOf = (details: HTMLDetailsElement) =>
     details.querySelector<HTMLElement>(`.${styles.body}`);
 
+  // A fast re-click cancels whatever is mid-flight on this card's parts.
+  const cancelRunning = (body: HTMLElement) => {
+    for (const anim of body.getAnimations()) anim.cancel();
+    const inner = body.firstElementChild;
+    if (inner) for (const anim of inner.getAnimations()) anim.cancel();
+  };
+
   const open = (details: HTMLDetailsElement) => {
     const body = bodyOf(details);
     details.open = true;
     if (!body || prefersReduced()) return;
 
-    anims.get(body)?.cancel();
+    cancelRunning(body);
     const target = body.scrollHeight;
-    const anim = body.animate(
-      { height: ["0px", `${target}px`], opacity: [0, 1] },
-      { duration: DURATION, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" },
+    const height = body.animate(
+      { height: ["0px", `${target}px`] },
+      { duration: OPEN_MS, easing: EASE_OPEN },
     );
-    anims.set(body, anim);
-    anim.onfinish = () => {
+    // Content rides in a little behind the box for a livelier reveal.
+    body.firstElementChild?.animate(
+      { opacity: [0, 1], transform: ["translateY(14px)", "translateY(0)"] },
+      { duration: OPEN_MS, easing: EASE_OPEN, delay: 40, fill: "backwards" },
+    );
+    height.onfinish = () => {
       body.style.height = "";
-      anims.delete(body);
     };
   };
 
@@ -46,17 +59,19 @@ export function ServicesSection() {
       return;
     }
 
-    anims.get(body)?.cancel();
+    cancelRunning(body);
     const start = body.scrollHeight;
-    const anim = body.animate(
-      { height: [`${start}px`, "0px"], opacity: [1, 0] },
-      { duration: DURATION, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" },
+    const height = body.animate(
+      { height: [`${start}px`, "0px"] },
+      { duration: CLOSE_MS, easing: EASE_CLOSE },
     );
-    anims.set(body, anim);
-    anim.onfinish = () => {
+    body.firstElementChild?.animate(
+      { opacity: [1, 0], transform: ["translateY(0)", "translateY(8px)"] },
+      { duration: CLOSE_MS, easing: EASE_CLOSE },
+    );
+    height.onfinish = () => {
       details.open = false;
       body.style.height = "";
-      anims.delete(body);
     };
   };
 
