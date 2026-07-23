@@ -26,7 +26,7 @@ export default function HomePage() {
         <ProductCallout productId="ai-course" eyebrow="Обучение" />
         <ProcessSection />
         <TeachingContextSection />
-        <ProductCallout productId="figma-mentoring" />
+        <ProductCallout productId="figma-mentoring" eyebrow="Наставничество" />
         <TestimonialsSection />
         <FaqSection />
         <ContactSection />

@@ -1,0 +1,81 @@
+.teaching {
+  width: min(100% - (var(--page-gutter) * 2), var(--container));
+  margin-inline: auto;
+  padding-block: var(--section-space);
+}
+
+.eyebrow {
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 20ch;
+  margin-top: var(--space-5);
+  font-weight: 600;
+}
+
+.intro {
+  max-width: 56ch;
+  margin-top: var(--space-4);
+  color: var(--color-muted);
+  font-size: var(--font-body-lg);
+}
+
+.cards {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.chip {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.cardTitle {
+  /* Serif italic ties these back to the editorial notes they come from. */
+  max-width: 22ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--font-h3);
+  letter-spacing: -0.02em;
+}
+
+.cardBody {
+  max-width: 52ch;
+  color: var(--color-muted);
+  font-size: var(--font-body-lg);
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
