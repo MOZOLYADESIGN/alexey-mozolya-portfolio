@@ -1,0 +1,110 @@
+.footer {
+  width: min(100% - (var(--page-gutter) * 2), var(--container));
+  margin-inline: auto;
+  padding-bottom: var(--space-7);
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(5rem, 12vw, 9rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+}
+
+.top {
+  display: grid;
+  gap: var(--space-7);
+  padding-bottom: var(--space-8);
+}
+
+.name {
+  font-size: var(--font-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+}
+
+.tagline {
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.desc {
+  max-width: 42ch;
+  margin-top: var(--space-4);
+  color: var(--color-muted);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.colTitle {
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.colList {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  list-style: none;
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.bottom {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.copy {
+  color: var(--color-muted);
+  font-size: var(--font-meta);
+}
+
+/* Oversized faded wordmark bleeding off the bottom edge, like the reference.
+   A pseudo-element, so it stays purely decorative — no text node to read or
+   score for contrast. */
+.panel::after {
+  content: "Мозоля";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  translate: -50% 44%;
+  color: var(--color-border);
+  font-weight: 600;
+  font-size: clamp(4.5rem, 19vw, 16rem);
+  line-height: 0.72;
+  letter-spacing: var(--tracking-hero);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .top {
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .cols {
+    gap: var(--space-8);
+  }
+}

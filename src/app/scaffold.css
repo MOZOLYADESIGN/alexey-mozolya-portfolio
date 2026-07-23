@@ -6,13 +6,7 @@
  * This file must be empty and removed by the end of the build.
  */
 
-footer ul {
-  display: flex;
-  gap: var(--space-4);
-}
-
-.section-shell__inner,
-footer {
+.section-shell__inner {
   width: min(100% - (var(--page-gutter) * 2), var(--container));
   margin-inline: auto;
 }
@@ -31,17 +25,4 @@ footer {
   font-size: var(--font-meta);
   text-transform: uppercase;
   letter-spacing: var(--tracking-meta);
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-6);
-  padding-block: var(--space-7) var(--space-10);
-}
-
-@media (max-width: 767px) {
-  footer {
-    flex-direction: column;
-  }
 }
