@@ -23,7 +23,7 @@ export default function HomePage() {
         <ProofSection />
         <ServicesSection />
         <ThoughtsSection />
-        <ProductCallout productId="ai-course" />
+        <ProductCallout productId="ai-course" eyebrow="Обучение" />
         <ProcessSection />
         <TeachingContextSection />
         <ProductCallout productId="figma-mentoring" />

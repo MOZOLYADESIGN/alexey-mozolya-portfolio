@@ -58,6 +58,8 @@ export interface Thought {
   id: string;
   title: string;
   body: string;
+  /** Where the thought is shown: the "Мысли" block (9) or teaching context (11). */
+  placement: "thoughts" | "teaching";
   futureSlug?: string;
   linkEnabled: boolean;
 }
