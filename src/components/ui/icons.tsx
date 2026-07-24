@@ -56,6 +56,15 @@ export function IconCanvas(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconArrowUp(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 19V5" />
+      <path d="M6 11l6-6 6 6" />
+    </svg>
+  );
+}
+
 export function IconPeople(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...props}>

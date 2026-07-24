@@ -1,34 +1,61 @@
+/*
+ * Theme is expressed through --co-* custom properties so the whole block can
+ * invert in one place. Default is the light page theme; when the callout is
+ * scrolled to the middle of the viewport (data-active), everything flips to a
+ * dark theme and transitions smoothly.
+ */
 .callout {
+  --co-bg: var(--color-bg);
+  --co-surface: var(--color-surface);
+  --co-text: var(--color-text);
+  --co-muted: var(--color-muted);
+  --co-border: var(--color-border);
+  --co-cta-bg: var(--color-text);
+  --co-cta-fg: var(--color-surface);
+  --co-arrow: rgb(11 11 11 / 0.32);
+
   width: min(100% - (var(--page-gutter) * 2), var(--container));
   margin-inline: auto;
   padding-block: var(--section-space);
 }
 
-.panel {
-  display: grid;
-  gap: var(--space-6);
-  padding: clamp(1.75rem, 5vw, 3.5rem);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+.callout[data-active="true"] {
+  --co-surface: #16181c;
+  --co-text: #ffffff;
+  --co-muted: rgb(255 255 255 / 0.66);
+  --co-border: rgb(255 255 255 / 0.16);
+  --co-cta-bg: #ffffff;
+  --co-cta-fg: #0b0b0b;
+  --co-arrow: rgb(255 255 255 / 0.5);
 }
 
-.lead > * + * {
-  margin-top: var(--space-4);
+.panel {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  border: 1px solid var(--co-border);
+  border-radius: var(--radius-xl);
+  background: var(--co-surface);
+  color: var(--co-text);
+  transition:
+    background-color 600ms var(--ease-standard),
+    border-color 600ms var(--ease-standard),
+    color 600ms var(--ease-standard);
+}
+
+.content {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+  min-width: 0;
 }
 
 .eyebrow {
-  color: var(--color-muted);
+  color: var(--co-muted);
   font-size: var(--font-meta);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
-}
-
-.context {
-  max-width: 46ch;
-  color: var(--color-muted);
-  font-size: var(--font-body-lg);
+  transition: color 600ms var(--ease-standard);
 }
 
 .title {
@@ -36,9 +63,11 @@
   font-weight: 600;
 }
 
-.body {
-  display: grid;
-  gap: var(--space-6);
+.context {
+  max-width: 46ch;
+  color: var(--co-muted);
+  font-size: var(--font-body-lg);
+  transition: color 600ms var(--ease-standard);
 }
 
 .facts {
@@ -50,14 +79,16 @@
   display: grid;
   gap: var(--space-1);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--co-border);
+  transition: border-color 600ms var(--ease-standard);
 }
 
 .factTerm {
-  color: var(--color-muted);
+  color: var(--co-muted);
   font-size: var(--font-meta);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
+  transition: color 600ms var(--ease-standard);
 }
 
 .factValue {
@@ -73,9 +104,10 @@
 
 .includedItem {
   padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--co-border);
   border-radius: var(--radius-pill);
   font-size: var(--font-meta);
+  transition: border-color 600ms var(--ease-standard);
 }
 
 .action {
@@ -83,6 +115,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-4);
+  margin-top: var(--space-2);
 }
 
 .price {
@@ -96,35 +129,81 @@
   min-height: 52px;
   align-items: center;
   padding-inline: var(--space-6);
-  border: 1px solid var(--color-text);
   border-radius: var(--radius-pill);
-  background: var(--color-text);
-  color: var(--color-surface);
+  background: var(--co-cta-bg);
+  color: var(--co-cta-fg);
   font-weight: 500;
   text-decoration: none;
   transition:
-    background var(--duration-fast) var(--ease-standard),
-    border-color var(--duration-fast) var(--ease-standard);
+    background-color 600ms var(--ease-standard),
+    color 600ms var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
 }
 
 .cta:hover {
-  border-color: #262624;
-  background: #262624;
+  transform: translateY(-1px);
 }
 
-@media (min-width: 768px) {
+/* ---- Converging arrows ---- */
+
+.aside {
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--co-bg);
+  transition: background-color 600ms var(--ease-standard);
+}
+
+.callout[data-active="true"] .aside {
+  background: rgb(255 255 255 / 0.04);
+}
+
+.arrows {
+  display: grid;
+  gap: clamp(0.5rem, 1.6vw, 1rem);
+  justify-items: center;
+}
+
+.arrowRow {
+  display: flex;
+  gap: clamp(0.5rem, 1.6vw, 1rem);
+}
+
+.arrow {
+  width: clamp(20px, 3.4vw, 30px);
+  height: clamp(20px, 3.4vw, 30px);
+  color: var(--co-arrow);
+  transition: color 600ms var(--ease-standard);
+  animation: arrowRise 2.6s var(--ease-standard) infinite;
+}
+
+@keyframes arrowRise {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(3px);
+  }
+  45% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 900px) {
   .panel {
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: start;
+    grid-template-columns: 1.25fr 0.75fr;
+    align-items: stretch;
   }
 
-  .panel > * {
-    min-width: 0;
+  .aside {
+    padding: clamp(2rem, 4vw, 3.5rem);
   }
+}
 
-  /* Price and CTA sit apart on the same line on wide layouts. */
-  .action {
-    justify-content: space-between;
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    animation: none;
+    opacity: 0.7;
   }
 }
