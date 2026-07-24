@@ -13,11 +13,11 @@ export interface AboutPortrait {
 }
 
 export const aboutPortrait: AboutPortrait = {
-  // TODO: заменить на актуальный портрет автора.
-  src: null,
-  width: 720,
-  height: 900,
-  alt: "Алексей Мозоля",
+  // Портрет автора, перенесённый с первого экрана.
+  src: "/media/hero/hero-portrait-placeholder.webp",
+  width: 850,
+  height: 840,
+  alt: "Алексей Мозоля — портрет",
 };
 
 export const aboutTitle = "Смотрю на продукт шире отдельного экрана";

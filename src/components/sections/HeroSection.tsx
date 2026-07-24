@@ -1,19 +1,29 @@
-import { HeroMedia } from "@/components/sections/HeroMedia";
 import { ContactLink } from "@/components/ui/ContactLink";
-import { siteConfig } from "@/content/site";
+import { heroTitle, siteConfig } from "@/content/site";
 import { HERO_CTA_ID } from "@/lib/anchors";
 
 import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
-  const { eyebrow, titleLead, titleAccent, subtitle } = siteConfig.hero;
+  const { eyebrow, subtitle } = siteConfig.hero;
 
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
+      {/* Concentric rings pulse toward the middle, drawing the eye to center. */}
+      <div className={styles.rings} aria-hidden="true">
+        <span className={styles.ring} />
+        <span className={styles.ring} />
+        <span className={styles.ring} />
+        <span className={styles.ring} />
+        <span className={styles.ring} />
+      </div>
+      {/* A background-colour wash melts the rings away behind the text. */}
+      <div className={styles.fade} aria-hidden="true" />
+
       <div className={styles.copy}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h1 className={styles.title} id="hero-title">
-          {titleLead} <span className={styles.titleAccent}>{titleAccent}</span>
+          {heroTitle}
         </h1>
         <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.actions}>
@@ -25,8 +35,6 @@ export function HeroSection() {
           </a>
         </div>
       </div>
-
-      <HeroMedia />
     </section>
   );
 }

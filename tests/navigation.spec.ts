@@ -9,16 +9,18 @@ test.describe("desktop nav", () => {
 
     const full = (await nav.boundingBox())!.height;
 
-    await page.evaluate(() => window.scrollTo(0, 1200));
-    await page.waitForTimeout(500);
+    // Scroll instantly — the page sets scroll-behavior: smooth, and we are
+    // asserting the compact state at a depth, not the smooth-scroll timing.
+    await page.evaluate(() => window.scrollTo({ top: 1200, behavior: "instant" }));
+    await page.waitForTimeout(400);
     const compact = (await nav.boundingBox())!.height;
 
-    await page.evaluate(() => window.scrollTo(0, 400));
-    await page.waitForTimeout(500);
+    await page.evaluate(() => window.scrollTo({ top: 400, behavior: "instant" }));
+    await page.waitForTimeout(400);
     const stillCompact = (await nav.boundingBox())!.height;
 
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(500);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.waitForTimeout(400);
     const restored = (await nav.boundingBox())!.height;
 
     console.log({ full, compact, stillCompact, restored });

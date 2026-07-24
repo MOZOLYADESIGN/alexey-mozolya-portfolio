@@ -28,10 +28,14 @@ test.describe("about", () => {
     expect(length).toBeLessThanOrEqual(650);
   });
 
-  test("has one h2 and no invented illustration captions", async ({ page }) => {
+  test("shows the portrait but no invented illustration captions", async ({ page }) => {
     await expect(page.locator("#about h2")).toHaveCount(1);
-    // While there is no real illustration nothing may claim to be one.
-    await expect(page.locator("#about img")).toHaveCount(0);
+    // The real portrait now lives here (moved off the hero).
+    const portrait = page.locator("[data-testid='about-portrait'] img");
+    await expect(portrait).toHaveCount(1);
+    await expect(portrait).toHaveAttribute("alt", /Алексей/);
+    // Principle illustrations are still placeholders — no image, no caption.
+    await expect(page.locator("#about ul img")).toHaveCount(0);
     await expect(page.locator("#about figcaption")).toHaveCount(0);
   });
 
