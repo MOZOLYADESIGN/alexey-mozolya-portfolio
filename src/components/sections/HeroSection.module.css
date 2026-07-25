@@ -69,6 +69,19 @@
   }
 }
 
+/* The author, mid-invitation, standing among the rings. */
+.invite {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 1;
+  height: min(84svh, 820px);
+  width: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Radial wash in the page colour: opaque at the centre so the text reads
    cleanly, fading out so the rings survive at the edges. */
 .fade {

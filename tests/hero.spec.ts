@@ -8,8 +8,10 @@ test("hero: makes no media request (rings are CSS, portrait moved to About)", as
   await page.goto("/");
   await page.waitForLoadState("networkidle");
   expect(media).toEqual([]);
-  // No image or video on the first screen any more.
-  await expect(page.locator("#top img, #top video")).toHaveCount(0);
+  // The invitation figure is the only image; no video.
+  await expect(page.locator("#top video")).toHaveCount(0);
+  await expect(page.locator("#top img")).toHaveCount(1);
+  await expect(page.locator("#top img")).toHaveAttribute("alt", /приглаша/);
 });
 
 test("hero: single h1 containing the exact phrase, no italic serif", async ({ page }) => {
