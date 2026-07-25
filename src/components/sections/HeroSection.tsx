@@ -17,19 +17,19 @@ export function HeroSection() {
         <span className={styles.ring} />
         <span className={styles.ring} />
       </div>
-      {/* eslint-disable-next-line @next/next/no-img-element -- static export, explicit dimensions, no optimizer */}
-      <img
-        className={styles.invite}
-        src="/media/hero/hero-invite.webp"
-        width={900}
-        height={977}
-        alt="Алексей Мозоля приглашает к сотрудничеству"
-        fetchPriority="high"
-      />
-      {/* A background-colour wash melts the rings and figure away behind the text. */}
+      {/* A background-colour wash melts the rings away behind the text. */}
       <div className={styles.fade} aria-hidden="true" />
 
       <div className={styles.copy}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export, explicit dimensions, no optimizer */}
+        <img
+          className={styles.invite}
+          src="/media/hero/hero-invite.webp"
+          width={900}
+          height={977}
+          alt="Алексей Мозоля приглашает к сотрудничеству"
+          fetchPriority="high"
+        />
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h1 className={styles.title} id="hero-title">
           {heroTitle}

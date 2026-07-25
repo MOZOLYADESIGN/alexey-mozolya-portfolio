@@ -69,16 +69,11 @@
   }
 }
 
-/* The author, mid-invitation, standing among the rings. */
+/* The author, mid-invitation — a small figure above the headline. */
 .invite {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  translate: -50% 0;
-  z-index: 1;
-  height: min(84svh, 820px);
+  height: clamp(120px, 20vw, 168px);
   width: auto;
-  pointer-events: none;
+  margin-bottom: var(--space-2);
   user-select: none;
 }
 
