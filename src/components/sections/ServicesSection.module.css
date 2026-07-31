@@ -4,16 +4,8 @@
   padding-block: var(--section-space);
 }
 
-.eyebrow {
-  color: var(--color-muted);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-
 .title {
   max-width: 16ch;
-  margin-top: var(--space-5);
   font-weight: 600;
 }
 

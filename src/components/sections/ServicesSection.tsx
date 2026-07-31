@@ -98,7 +98,6 @@ export function ServicesSection() {
   return (
     <section id="services" className={styles.services} aria-labelledby="services-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Услуги</p>
         <h2 className={styles.title} id="services-title">
           Форматы работы
         </h2>

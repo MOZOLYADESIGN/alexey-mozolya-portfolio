@@ -12,14 +12,13 @@ import styles from "./ProductCallout.module.css";
 interface ProductCalloutProps {
   productId: Product["id"];
   sectionId?: string;
-  eyebrow?: string;
 }
 
 // Pyramid of up-arrows converging toward the top — the graphic focuses the eye
 // upward, on the offer.
 const ARROW_ROWS = [1, 2, 3, 4, 5];
 
-export function ProductCallout({ productId, sectionId, eyebrow = "Продукт" }: ProductCalloutProps) {
+export function ProductCallout({ productId, sectionId }: ProductCalloutProps) {
   const product = products.find((item) => item.id === productId);
   const ref = useRef<HTMLElement>(null);
   const [active, setActive] = useState(false);
@@ -57,7 +56,6 @@ export function ProductCallout({ productId, sectionId, eyebrow = "Продукт
     >
       <div className={styles.panel}>
         <div className={styles.content}>
-          <p className={styles.eyebrow}>{eyebrow}</p>
           <h2 className={styles.title} id={titleId}>
             {product.title}
           </h2>

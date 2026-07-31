@@ -5,7 +5,7 @@ export function ProofSection() {
   if (proofs.length === 0) return null;
 
   return (
-    <SectionShell id="proofs" eyebrow="Факты" title="Доказательства в цифрах и проектах">
+    <SectionShell id="proofs" title="Доказательства в цифрах и проектах">
       <ul>
         {proofs.map((proof) => (
           <li key={proof.id}>

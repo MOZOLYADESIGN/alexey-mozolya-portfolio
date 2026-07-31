@@ -104,13 +104,6 @@
   width: min(100%, 62rem);
 }
 
-.eyebrow {
-  color: var(--color-muted);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-
 .title {
   max-width: 20ch;
   font-weight: 600;

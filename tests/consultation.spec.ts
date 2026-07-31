@@ -33,6 +33,18 @@ test.describe("consultation callout", () => {
   });
 
   test("has no accessibility violations", async ({ page }) => {
+    // The block inverts its theme on scroll; scanning mid-transition reads
+    // interpolated colours and reports contrast that never renders.
+    // Transitions only — the decorative arrows loop forever, so awaiting every
+    // animation would hang.
+    await page.locator("#products").evaluate((el) =>
+      Promise.all(
+        el
+          .getAnimations({ subtree: true })
+          .filter((a) => a instanceof CSSTransition)
+          .map((a) => a.finished),
+      ),
+    );
     const results = await new AxeBuilder({ page }).include("#products").analyze();
     const serious = results.violations.filter((v) =>
       ["critical", "serious"].includes(v.impact ?? ""),

@@ -19,14 +19,14 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
-        <ProductCallout productId="consultation" sectionId="products" eyebrow="Первый шаг" />
+        <ProductCallout productId="consultation" sectionId="products" />
         <ProofSection />
         <ServicesSection />
         <ThoughtsSection />
-        <ProductCallout productId="ai-course" eyebrow="Обучение" />
+        <ProductCallout productId="ai-course" />
         <ProcessSection />
         <TeachingContextSection />
-        <ProductCallout productId="figma-mentoring" eyebrow="Наставничество" />
+        <ProductCallout productId="figma-mentoring" />
         <TestimonialsSection />
         <FaqSection />
         <ContactSection />

@@ -10,7 +10,6 @@ export function ThoughtsSection() {
   return (
     <section id="thoughts" className={styles.thoughts} aria-labelledby="thoughts-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Мысли</p>
         <h2 className={styles.title} id="thoughts-title">
           Как я смотрю на дизайн и продукты
         </h2>

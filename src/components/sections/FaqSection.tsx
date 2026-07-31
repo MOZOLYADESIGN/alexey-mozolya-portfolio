@@ -86,7 +86,6 @@ export function FaqSection() {
   return (
     <section id="faq" className={styles.faq} aria-labelledby="faq-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>FAQ</p>
         <h2 className={styles.title} id="faq-title">
           Частые вопросы
         </h2>

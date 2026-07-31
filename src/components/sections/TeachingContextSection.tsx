@@ -15,7 +15,6 @@ export function TeachingContextSection() {
   return (
     <section id="teaching" className={styles.teaching} aria-labelledby="teaching-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>{teaching.eyebrow}</p>
         <h2 className={styles.title} id="teaching-title">
           {teaching.title}
         </h2>

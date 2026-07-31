@@ -5,7 +5,7 @@ import { HERO_CTA_ID } from "@/lib/anchors";
 import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
-  const { eyebrow, subtitle } = siteConfig.hero;
+  const { subtitle } = siteConfig.hero;
 
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
@@ -30,7 +30,6 @@ export function HeroSection() {
           alt="Алексей Мозоля приглашает к сотрудничеству"
           fetchPriority="high"
         />
-        <p className={styles.eyebrow}>{eyebrow}</p>
         <h1 className={styles.title} id="hero-title">
           {heroTitle}
         </h1>

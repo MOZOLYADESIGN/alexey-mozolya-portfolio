@@ -34,7 +34,6 @@ export function AboutSection() {
         </div>
 
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>Обо мне</p>
           <h2 className={styles.title} id="about-title">
             {aboutTitle}
           </h2>

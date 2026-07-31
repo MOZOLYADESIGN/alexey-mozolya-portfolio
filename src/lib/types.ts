@@ -15,8 +15,8 @@ export interface Project {
   id: string;
   title: string;
   category: string;
-  idea: string;
-  result: string;
+  /** One paragraph explaining the case. Replaces the old idea/result pair. */
+  summary: string;
   cover?: string;
   alt: string;
   gradient?: string;

@@ -19,10 +19,3 @@
   max-width: 16ch;
   margin-bottom: var(--space-6);
 }
-
-.eyebrow {
-  color: var(--color-muted);
-  font-size: var(--font-meta);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-meta);
-}

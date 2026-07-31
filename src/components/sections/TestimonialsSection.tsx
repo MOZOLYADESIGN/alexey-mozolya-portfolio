@@ -8,7 +8,6 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className={styles.testimonials} aria-labelledby="testimonials-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Отзывы</p>
         <h2 className={styles.title} id="testimonials-title">
           Что говорят после совместной работы
         </h2>

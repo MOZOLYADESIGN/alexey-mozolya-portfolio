@@ -11,7 +11,6 @@ export function ProjectsSection() {
   return (
     <section id="projects" className={styles.projects} aria-labelledby="projects-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Работы</p>
         <h2 className={styles.title} id="projects-title">
           Отобранные проекты
         </h2>
@@ -37,14 +36,7 @@ export function ProjectsSection() {
                   data-cover="true"
                 />
                 <span className={styles.panel} data-panel="true">
-                  <span className={styles.revealGroup} data-reveal="group">
-                    <span className={styles.revealLabel}>Идея</span>
-                    <span className={styles.revealLine} data-reveal="line">{project.idea}</span>
-                  </span>
-                  <span className={styles.revealGroup} data-reveal="group">
-                    <span className={styles.revealLabel}>Результат</span>
-                    <span className={styles.revealLine} data-reveal="line">{project.result}</span>
-                  </span>
+                  <span className={styles.revealLine} data-reveal="line">{project.summary}</span>
                 </span>
               </span>
 

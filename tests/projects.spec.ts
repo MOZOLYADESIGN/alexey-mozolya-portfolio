@@ -31,12 +31,23 @@ test.describe("projects", () => {
     expect(hrefs.every((href) => href === "https://t.me/poofex")).toBe(true);
   });
 
-  test("idea and result stay within 120 characters", async ({ page }) => {
-    const lines = await page.locator(`${CARD} [data-reveal="line"]`).allInnerTexts();
-    expect(lines.length).toBeGreaterThan(0);
-    for (const line of lines) {
-      expect(line.trim().length).toBeLessThanOrEqual(120);
+  test("each card carries one summary within 200 characters", async ({ page }) => {
+    const cards = page.locator(CARD);
+    for (const card of await cards.all()) {
+      const lines = card.locator('[data-reveal="line"]');
+      // One block of copy per card — the Идея/Результат labels are gone.
+      await expect(lines).toHaveCount(1);
+      expect((await lines.innerText()).trim().length).toBeLessThanOrEqual(200);
     }
+    await expect(page.locator("#projects")).not.toContainText(/Идея|Результат/);
+  });
+
+  test("the summary is set semibold", async ({ page }) => {
+    const weight = await page
+      .locator(`${CARD} [data-reveal="line"]`)
+      .first()
+      .evaluate((node) => getComputedStyle(node).fontWeight);
+    expect(Number(weight)).toBeGreaterThanOrEqual(600);
   });
 
   test("has no accessibility violations", async ({ page }) => {
@@ -51,7 +62,7 @@ test.describe("projects", () => {
 test.describe("projects from 768px up", () => {
   test.skip(({ isMobile }) => Boolean(isMobile));
 
-  test("caption sits under the image, plain and always visible", async ({ page }) => {
+  test("caption rides the same fade to the page background as on phones", async ({ page }) => {
     await page.goto("/");
     const card = page.locator(CARD).first();
     await card.scrollIntoViewIfNeeded();
@@ -64,12 +75,13 @@ test.describe("projects from 768px up", () => {
       return { opacity: cs.opacity, backdrop: cs.backdropFilter, background: cs.backgroundImage };
     });
 
-    // Below the cover, never over it — the whole image stays visible.
-    expect(panel.y).toBeGreaterThanOrEqual(cover.y + cover.height - 1);
-    // No hidden state, no frosted plate, no decorative blur.
+    // Overlaid on the cover, bottom-aligned with it.
+    expect(panel.y).toBeGreaterThan(cover.y);
+    expect(Math.round(panel.y + panel.height)).toBeCloseTo(Math.round(cover.y + cover.height), 0);
+    // Always visible, a gradient into the page colour, never a frosted plate.
     expect(style.opacity).toBe("1");
     expect(["none", ""]).toContain(style.backdrop);
-    expect(style.background).toBe("none");
+    expect(style.background).toContain("gradient");
   });
 
   test("hovering a card leaves the cover fully visible", async ({ page }) => {
@@ -90,7 +102,7 @@ test.describe("projects from 768px up", () => {
 test.describe("projects on a coarse pointer", () => {
   test.skip(({ isMobile }) => !isMobile);
 
-  test("idea and result are visible without interaction", async ({ page }) => {
+  test("the summary is visible without interaction", async ({ page }) => {
     await page.goto("/");
     const card = page.locator(CARD).first();
     await card.scrollIntoViewIfNeeded();

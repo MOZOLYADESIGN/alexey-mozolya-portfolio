@@ -14,7 +14,6 @@ export function ProcessSection() {
   return (
     <section id="process" className={styles.process} aria-labelledby="process-title">
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Процесс</p>
         <h2 className={styles.title} id="process-title">
           Как проходит работа
         </h2>

@@ -9,7 +9,6 @@ export function ContactSection() {
   return (
     <section id="contact" className={styles.contact} aria-labelledby="contact-title">
       <div className={styles.panel}>
-        <p className={styles.eyebrow}>Контакты</p>
         <h2 className={styles.title} id="contact-title">
           Расскажите, что нужно усилить
         </h2>

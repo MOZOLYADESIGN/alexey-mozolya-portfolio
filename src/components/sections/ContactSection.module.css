@@ -21,13 +21,6 @@
     #0b0b0b;
 }
 
-.eyebrow {
-  color: rgb(255 255 255 / 0.6);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-
 .title {
   max-width: 18ch;
   font-weight: 600;

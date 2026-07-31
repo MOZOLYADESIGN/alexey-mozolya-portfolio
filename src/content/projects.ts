@@ -6,7 +6,7 @@ import type { Project } from "@/lib/types";
  *
  * TODO: заменить на реальные кейсы.
  *
- * `idea` и `result` — намеренно «рыба» в пределах лимита 120 знаков. Правдоподобный
+ * `summary` — намеренно «рыба» в пределах лимита 200 знаков. Правдоподобный
  * текст здесь писать нельзя: выдуманный результат кейса читается как заявление
  * о реальной работе, даже под флагом `isPlaceholder`.
  */
@@ -23,8 +23,8 @@ const covers = [
   { gradient: "linear-gradient(135deg, #87ff36, #61d8ff)", category: "Сайт" },
 ];
 
-const idea = "Рыбный текст на месте идеи кейса. Здесь появится короткое описание задачи и решения — до 120 знаков.";
-const result = "Рыбный текст на месте результата. Здесь появится конкретный итог работы — тоже до 120 знаков.";
+const summary =
+  "Рыбный текст на месте пояснения к кейсу. Здесь появится короткое описание задачи, решения и итога работы — до 200 знаков.";
 
 export const projects: Project[] = covers.map((cover, index) => {
   const number = String(index + 1).padStart(2, "0");
@@ -33,8 +33,7 @@ export const projects: Project[] = covers.map((cover, index) => {
     id: `case-${number}`,
     title: `Кейс ${number}`,
     category: cover.category,
-    idea,
-    result,
+    summary,
     alt: "",
     gradient: cover.gradient,
     isPublished: true,

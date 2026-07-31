@@ -4,16 +4,8 @@
   padding-block: var(--section-space);
 }
 
-.eyebrow {
-  color: var(--color-muted);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-
 .title {
   max-width: 16ch;
-  margin-top: var(--space-5);
   font-weight: 600;
 }
 
@@ -49,8 +41,8 @@
 }
 
 /*
- * Mobile / coarse pointer: the caption is always visible. The lower part of the
- * image dissolves into the page background, and the text rides on that fade —
+ * The caption is always visible at every width. The lower part of the image
+ * dissolves into the page background and the text rides on that fade —
  * `transparent` is spelled as the background colour at zero alpha so it doesn't
  * fade through grey on the way down.
  */
@@ -59,28 +51,16 @@
   inset-inline: 0;
   bottom: 0;
   display: grid;
-  gap: var(--space-3);
   align-content: end;
   padding: var(--space-10) var(--space-4) var(--space-4);
   background: linear-gradient(to bottom, rgb(248 248 247 / 0) 0%, var(--color-bg) 56%);
   border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
-.revealGroup {
-  display: grid;
-  gap: var(--space-1);
-}
-
-.revealLabel {
-  color: var(--color-muted);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-
 .revealLine {
   color: var(--color-text);
   font-size: var(--font-meta);
+  font-weight: 600;
   line-height: var(--leading-body);
 }
 
@@ -103,25 +83,11 @@
   font-size: var(--font-meta);
 }
 
-/*
- * From the 768px breakpoint the caption is plain text under the image, per the
- * Figma spec: no overlay, no blur, the whole cover always visible. The overlay
- * fade is a phone-only treatment — on the two-column layout it swallowed the
- * small covers.
- */
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-8) var(--space-6);
     margin-top: var(--space-8);
-  }
-
-  .panel {
-    position: static;
-    align-content: start;
-    padding: var(--space-4) 0 0;
-    background: none;
-    border-radius: 0;
   }
 }
 

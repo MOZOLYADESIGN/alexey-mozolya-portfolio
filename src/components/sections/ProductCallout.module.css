@@ -50,14 +50,6 @@
   min-width: 0;
 }
 
-.eyebrow {
-  color: var(--co-muted);
-  font-size: var(--font-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  transition: color 600ms var(--ease-standard);
-}
-
 .title {
   max-width: 20ch;
   font-weight: 600;
