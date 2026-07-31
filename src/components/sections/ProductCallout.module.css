@@ -1,46 +1,72 @@
 /*
  * Theme is expressed through --co-* custom properties so the whole block can
  * invert in one place. Default is the light page theme; when the callout is
- * scrolled to the middle of the viewport (data-active), everything flips to a
- * dark theme and transitions smoothly.
+ * scrolled to the middle of the viewport (data-active), the entire section —
+ * not a panel inside it — flips to a dark theme and transitions smoothly.
  */
 .callout {
   --co-bg: var(--color-bg);
-  --co-surface: var(--color-surface);
   --co-text: var(--color-text);
   --co-muted: var(--color-muted);
   --co-border: var(--color-border);
   --co-cta-bg: var(--color-text);
   --co-cta-fg: var(--color-surface);
-  --co-arrow: rgb(11 11 11 / 0.32);
 
-  width: min(100% - (var(--page-gutter) * 2), var(--container));
-  margin-inline: auto;
-  padding-block: var(--section-space);
-}
-
-.callout[data-active="true"] {
-  --co-surface: #16181c;
-  --co-text: #ffffff;
-  --co-muted: rgb(255 255 255 / 0.66);
-  --co-border: rgb(255 255 255 / 0.16);
-  --co-cta-bg: #ffffff;
-  --co-cta-fg: #0b0b0b;
-  --co-arrow: rgb(255 255 255 / 0.5);
-}
-
-.panel {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  padding: clamp(1.75rem, 5vw, 3.5rem);
-  border: 1px solid var(--co-border);
-  border-radius: var(--radius-xl);
-  background: var(--co-surface);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--co-bg);
   color: var(--co-text);
   transition:
     background-color 600ms var(--ease-standard),
-    border-color 600ms var(--ease-standard),
     color 600ms var(--ease-standard);
+}
+
+.callout[data-active="true"] {
+  --co-bg: #16181c;
+  --co-text: #ffffff;
+  --co-muted: rgb(255 255 255 / 0.7);
+  --co-border: rgb(255 255 255 / 0.16);
+  --co-cta-bg: #ffffff;
+  --co-cta-fg: #0b0b0b;
+}
+
+/* ---- Generated mesh ---- */
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mesh {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* Doubled blur: at this size the mesh is wallpaper, not an illustration. */
+  --ab-blur: 56px;
+
+  /* Held back far enough that the copy keeps AA contrast against the section
+     colour over every variant, in both themes. */
+  opacity: 0.25;
+}
+
+/* ---- Copy ---- */
+
+.inner {
+  position: relative;
+  z-index: var(--z-raised);
+  display: grid;
+  align-content: space-evenly;
+  gap: var(--space-9);
+
+  /* Two viewports tall: the block is a stop on the page, not a strip. */
+  min-height: 200svh;
+  width: min(100% - (var(--page-gutter) * 2), var(--container));
+  margin-inline: auto;
+  padding-block: var(--section-space);
 }
 
 .content {
@@ -51,7 +77,7 @@
 }
 
 .title {
-  max-width: 20ch;
+  max-width: 18ch;
   font-weight: 600;
 }
 
@@ -64,18 +90,20 @@
 
 .facts {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
+  max-width: 62ch;
 }
 
 .fact {
   display: grid;
-  gap: var(--space-1);
-  padding-top: var(--space-4);
+  gap: var(--space-2);
+  padding-top: var(--space-5);
   border-top: 1px solid var(--co-border);
   transition: border-color 600ms var(--ease-standard);
 }
 
-.factTerm {
+.factTerm,
+.includedTerm {
   color: var(--co-muted);
   font-size: var(--font-meta);
   letter-spacing: var(--tracking-meta);
@@ -84,7 +112,9 @@
 }
 
 .factValue {
-  font-size: var(--font-body-lg);
+  /* dd carries a UA indent that the reset does not clear. */
+  margin: 0;
+  font-size: var(--font-h3);
 }
 
 .included {
@@ -95,10 +125,9 @@
 }
 
 .includedItem {
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-5);
   border: 1px solid var(--co-border);
   border-radius: var(--radius-pill);
-  font-size: var(--font-meta);
   transition: border-color 600ms var(--ease-standard);
 }
 
@@ -106,12 +135,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-4);
-  margin-top: var(--space-2);
+  gap: var(--space-5);
+  margin-top: var(--space-3);
 }
 
 .price {
-  font-size: var(--font-h3);
+  font-size: var(--font-h2);
   font-weight: 600;
   letter-spacing: var(--tracking-heading);
 }
@@ -136,66 +165,24 @@
   transform: translateY(-1px);
 }
 
-/* ---- Converging arrows ---- */
-
-.aside {
-  display: grid;
-  place-items: center;
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--co-bg);
-  transition: background-color 600ms var(--ease-standard);
-}
-
-.callout[data-active="true"] .aside {
-  background: rgb(255 255 255 / 0.04);
-}
-
-.arrows {
-  display: grid;
-  gap: clamp(0.5rem, 1.6vw, 1rem);
-  justify-items: center;
-}
-
-.arrowRow {
-  display: flex;
-  gap: clamp(0.5rem, 1.6vw, 1rem);
-}
-
-.arrow {
-  width: clamp(20px, 3.4vw, 30px);
-  height: clamp(20px, 3.4vw, 30px);
-  color: var(--co-arrow);
-  transition: color 600ms var(--ease-standard);
-  animation: arrowRise 2.6s var(--ease-standard) infinite;
-}
-
-@keyframes arrowRise {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: translateY(3px);
-  }
-  45% {
-    opacity: 0.95;
-    transform: translateY(0);
-  }
-}
-
-@media (min-width: 900px) {
-  .panel {
-    grid-template-columns: 1.25fr 0.75fr;
-    align-items: stretch;
+/*
+ * From 1025px the mesh stops being wallpaper and becomes the right-hand column:
+ * at full strength, with the copy held clear of it.
+ */
+@media (min-width: 1025px) {
+  .media {
+    inset: var(--section-space) var(--page-gutter) var(--section-space) auto;
+    width: min(38%, 560px);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
   }
 
-  .aside {
-    padding: clamp(2rem, 4vw, 3.5rem);
+  .mesh {
+    --ab-blur: 28px;
+    opacity: 1;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .arrow {
-    animation: none;
-    opacity: 0.7;
+  .inner {
+    padding-right: min(42%, 620px);
   }
 }
