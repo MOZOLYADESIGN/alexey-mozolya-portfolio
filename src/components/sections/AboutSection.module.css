@@ -77,10 +77,12 @@
   list-style: none;
 }
 
+/* Per the author's reference: the visual runs to the card edges at the top and
+   melts into the panel, with the copy sitting on the tail of that fade. */
 .principle {
   display: grid;
+  overflow: hidden;
   align-content: start;
-  padding: var(--space-5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
@@ -88,33 +90,35 @@
 }
 
 .principleMedia {
-  display: grid;
-  overflow: hidden;
-  align-items: center;
-  justify-items: start;
-  margin-bottom: var(--space-5);
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius-md);
-  background: var(--color-bg);
-  padding-inline: var(--space-5);
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
 }
 
+.principleAbstract,
 .principleImage {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.principleImage {
   object-fit: cover;
 }
 
-/* Stands in for the illustration without pretending to be one. */
-.principleIndex {
-  /* Quiet, but still AA against the panel — axe scores it as text regardless
-     of `aria-hidden`, and a decorative mark is no excuse for a failing ratio. */
-  color: var(--color-muted);
-  font-size: var(--font-h2);
-  font-weight: 600;
-  letter-spacing: var(--tracking-heading);
-  line-height: 1;
+.principleFade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 55%;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0) 0%, var(--color-surface) 88%);
+}
+
+/* Pulled up onto the fade — the copy starts before the visual has fully gone. */
+.principleText {
+  position: relative;
+  margin-top: calc(var(--space-7) * -1);
+  padding: 0 var(--space-5) var(--space-5);
 }
 
 .principleTitle {
@@ -140,6 +144,17 @@
 
   .principles {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-6);
+  }
+
+  /* Staggered, like the reference — the row reads as a collage, not a table. */
+  .principle:nth-child(2) {
+    margin-top: var(--space-9);
+  }
+
+  .principle:nth-child(3) {
+    margin-top: var(--space-6);
   }
 }
 
@@ -152,9 +167,5 @@
      portrait would be unreadable, so the frame drops instead. */
   .portraitFrame {
     margin-top: var(--space-8);
-  }
-
-  .principleMedia {
-    padding-inline: var(--space-6);
   }
 }

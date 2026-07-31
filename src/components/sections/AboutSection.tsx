@@ -5,6 +5,7 @@ import {
   aboutTitle,
   principles,
 } from "@/content/about";
+import { Abstract } from "@/components/ui/Abstract";
 
 import styles from "./AboutSection.module.css";
 
@@ -50,7 +51,7 @@ export function AboutSection() {
       </div>
 
       <ul className={styles.principles}>
-        {principles.map((principle) => (
+        {principles.map((principle, index) => (
           <li className={styles.principle} key={principle.id}>
             <div className={styles.principleMedia}>
               {principle.illustration ? (
@@ -63,13 +64,16 @@ export function AboutSection() {
                   decoding="async"
                 />
               ) : (
-                <span className={styles.principleIndex} aria-hidden="true">
-                  {principle.index}
-                </span>
+                <Abstract seed={index} className={styles.principleAbstract} />
               )}
+              {/* The visual dissolves into the card so the copy reads as part
+                  of the same object, not as a caption under a picture. */}
+              <span className={styles.principleFade} aria-hidden="true" />
             </div>
-            <h3 className={styles.principleTitle}>{principle.title}</h3>
-            <p className={styles.principleBody}>{principle.body}</p>
+            <div className={styles.principleText}>
+              <h3 className={styles.principleTitle}>{principle.title}</h3>
+              <p className={styles.principleBody}>{principle.body}</p>
+            </div>
           </li>
         ))}
       </ul>
