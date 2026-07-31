@@ -7,20 +7,29 @@ test.describe("desktop nav", () => {
     await page.goto("/");
     const nav = page.locator("nav[aria-label='Основная навигация'] > div");
 
+    // The capsule and its controls both animate; wait for every transition in
+    // the subtree instead of guessing a duration.
+    const settle = async () => {
+      await page.waitForTimeout(100);
+      await nav.evaluate((el) =>
+        Promise.all(el.getAnimations({ subtree: true }).map((a) => a.finished)),
+      );
+    };
+
     const full = (await nav.boundingBox())!.height;
 
     // Scroll instantly — the page sets scroll-behavior: smooth, and we are
     // asserting the compact state at a depth, not the smooth-scroll timing.
     await page.evaluate(() => window.scrollTo({ top: 1200, behavior: "instant" }));
-    await page.waitForTimeout(400);
+    await settle();
     const compact = (await nav.boundingBox())!.height;
 
     await page.evaluate(() => window.scrollTo({ top: 400, behavior: "instant" }));
-    await page.waitForTimeout(400);
+    await settle();
     const stillCompact = (await nav.boundingBox())!.height;
 
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-    await page.waitForTimeout(400);
+    await settle();
     const restored = (await nav.boundingBox())!.height;
 
     console.log({ full, compact, stillCompact, restored });

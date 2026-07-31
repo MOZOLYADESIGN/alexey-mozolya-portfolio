@@ -20,8 +20,6 @@
   justify-content: space-between;
   gap: var(--space-5);
 
-  /* Only padding, background, border and color animate — never size of a
-     control, so the capsule cannot jitter under the pointer. */
   padding: var(--space-4) var(--space-3) var(--space-4) var(--space-5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
@@ -34,16 +32,19 @@
     border-color var(--duration-fast) var(--ease-standard);
 }
 
-/* Compact: the capsule roughly halves in height while every control keeps its
-   44px hit area by overhanging the bar with a negative block margin. */
+/* Compact: the capsule and the controls inside it shrink together, so the bar
+   reads as one scaled-down object. Targets stay well above the 24px WCAG 2.2
+   AA minimum. */
 .nav[data-compact="true"] .inner {
-  padding-block: 0;
+  padding-block: var(--space-2);
   background: rgb(255 255 255 / 0.94);
 }
 
 .nav[data-compact="true"] .link,
 .nav[data-compact="true"] .cta {
-  margin-block: -4px;
+  min-height: 34px;
+  padding-inline: var(--space-3);
+  font-size: 0.8125rem;
 }
 
 .brand {
@@ -65,8 +66,6 @@
 .cta {
   display: inline-flex;
 
-  /* Constant 44px hit area in both states: the capsule shrinks around the
-     controls, the controls themselves never do. */
   min-height: 44px;
   align-items: center;
   padding-inline: var(--space-4);
@@ -76,7 +75,9 @@
   text-decoration: none;
   white-space: nowrap;
   transition:
-    margin var(--duration-reveal) var(--ease-standard),
+    min-height var(--duration-reveal) var(--ease-standard),
+    padding var(--duration-reveal) var(--ease-standard),
+    font-size var(--duration-reveal) var(--ease-standard),
     background var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
     color var(--duration-fast) var(--ease-standard);
