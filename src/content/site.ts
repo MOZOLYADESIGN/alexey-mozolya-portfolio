@@ -6,7 +6,6 @@ export const siteConfig = {
   description:
     "Алексей Мозоля — дизайнер интерфейсов и бренд-стратег. Проектирую сайты и цифровые продукты, развиваю визуальные системы и коммуникацию брендов.",
   hero: {
-    eyebrow: "Дизайн сайтов и цифровых продуктов",
     // The phrase is fixed. It is split only so the tail can be set in the
     // serif italic accent; `heroTitle` below keeps the full string intact.
     titleLead: "Прокачиваю смыслы, визуал, стратегию и коммуникацию",

@@ -16,6 +16,31 @@ test.describe("testimonials (block 12)", () => {
     }
   });
 
+  test("scrolls sideways below 1024px and becomes a grid above it", async ({ page }) => {
+    const rail = page.locator("#testimonials ul");
+
+    await page.setViewportSize({ width: 1023, height: 900 });
+    await page.waitForTimeout(100);
+    const narrow = await rail.evaluate((el) => ({
+      overflow: getComputedStyle(el).overflowX,
+      scrollable: el.scrollWidth > el.clientWidth,
+      focusable: el.tabIndex >= 0,
+    }));
+    expect(narrow.overflow).toBe("auto");
+    expect(narrow.scrollable).toBe(true);
+    // A scrollable region has to be reachable without a pointer.
+    expect(narrow.focusable).toBe(true);
+
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await page.waitForTimeout(100);
+    const wide = await rail.evaluate((el) => ({
+      display: getComputedStyle(el).display,
+      scrollable: el.scrollWidth > el.clientWidth,
+    }));
+    expect(wide.display).toBe("grid");
+    expect(wide.scrollable).toBe(false);
+  });
+
   test("is flagged as placeholder copy for final QA", async ({ page }) => {
     await expect(page.locator("#testimonials [data-placeholder-copy='true']")).toHaveCount(1);
   });

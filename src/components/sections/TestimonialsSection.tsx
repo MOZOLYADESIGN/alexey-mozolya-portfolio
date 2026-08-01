@@ -13,12 +13,16 @@ export function TestimonialsSection() {
         </h2>
       </div>
 
+      {/* The rail scrolls below 1024px, so it must be reachable and labelled
+          for anyone driving the page from the keyboard. */}
       <ul
         className={styles.list}
         data-placeholder-copy={testimonialsArePlaceholders ? "true" : undefined}
+        tabIndex={0}
+        aria-label="Отзывы"
       >
         {testimonials.map((testimonial) => (
-          <li key={testimonial.id}>
+          <li className={styles.item} key={testimonial.id}>
             <figure className={styles.card}>
               <span className={styles.quoteMark} aria-hidden="true">
                 &ldquo;

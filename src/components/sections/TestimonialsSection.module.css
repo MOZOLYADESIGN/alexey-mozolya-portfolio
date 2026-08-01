@@ -9,11 +9,37 @@
   font-weight: 600;
 }
 
+/*
+ * Below 1024px the quotes are a horizontal rail with a real scrollbar left
+ * showing — three columns at that width would squeeze each quote to a sliver.
+ */
 .list {
-  display: grid;
+  display: flex;
   gap: var(--space-5);
   margin-top: var(--space-8);
+  padding-bottom: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
   list-style: none;
+
+  /* Deliberately visible: the rail has to advertise that it scrolls. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.item {
+  flex: 0 0 min(84%, 24rem);
+  scroll-snap-align: start;
 }
 
 .card {
@@ -54,8 +80,15 @@
   font-size: var(--font-meta);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .list {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-bottom: 0;
+    overflow-x: visible;
+  }
+
+  .item {
+    flex: initial;
   }
 }
