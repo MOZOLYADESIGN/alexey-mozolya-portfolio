@@ -1,7 +1,138 @@
 .process {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--section-space);
+}
+
+.inner {
+  position: relative;
+  z-index: var(--z-raised);
   width: min(100% - (var(--page-gutter) * 2), var(--container));
   margin-inline: auto;
-  padding-block: var(--section-space);
+}
+
+/* ---- Floating stickers ---- */
+
+.stickers {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+/*
+ * --scroll (0 → 1) is written by the section on scroll; --depth is the travel
+ * in pixels. Centring on 0.5 means each sticker sits at its authored position
+ * when the block is halfway through the viewport.
+ */
+.floating {
+  position: absolute;
+  transform: translateY(calc((var(--scroll, 0.5) - 0.5) * var(--depth) * 1px))
+    rotate(var(--tilt, 0deg));
+  will-change: transform;
+}
+
+/*
+ * Phones: one column of cards leaves no side margin, so only the two stickers
+ * that fit above and below the stack survive, at a reduced size.
+ */
+.floating {
+  --sticker-size: 48px;
+}
+
+.floating[data-glyph="people"],
+.floating[data-glyph="layers"],
+.floating[data-glyph="canvas"],
+.floating[data-glyph="send"] {
+  display: none;
+}
+
+.floating[data-glyph="search"] {
+  top: 0;
+  right: var(--page-gutter);
+}
+
+.floating[data-glyph="spark"] {
+  bottom: var(--space-2);
+  left: var(--page-gutter);
+}
+
+/* Two columns of cards: room returns at the sides and under the grid. */
+@media (min-width: 768px) {
+  /* Authored size takes over from the reduced phone one. */
+  .floating {
+    --sticker-size: var(--size);
+  }
+
+  .floating[data-glyph="people"],
+  .floating[data-glyph="send"] {
+    display: grid;
+  }
+
+  .floating[data-glyph="search"] {
+    top: 4%;
+    right: 8%;
+  }
+
+  .floating[data-glyph="people"] {
+    top: 30%;
+    right: 6%;
+  }
+
+  .floating[data-glyph="send"] {
+    bottom: var(--space-4);
+    right: 8%;
+  }
+
+  .floating[data-glyph="spark"] {
+    bottom: var(--space-4);
+    left: 4%;
+  }
+}
+
+/* One row of four cards: the full scatter, using the band beneath the row. */
+@media (min-width: 1024px) {
+  .floating[data-glyph="layers"],
+  .floating[data-glyph="canvas"] {
+    display: grid;
+  }
+
+  .floating[data-glyph="search"] {
+    top: 6%;
+    right: 12%;
+  }
+
+  .floating[data-glyph="people"] {
+    top: 26%;
+    left: 62%;
+    right: auto;
+  }
+
+  .floating[data-glyph="layers"] {
+    top: 38%;
+    right: 4%;
+  }
+
+  .floating[data-glyph="spark"] {
+    bottom: 6%;
+    left: 8%;
+  }
+
+  .floating[data-glyph="canvas"] {
+    bottom: 4%;
+    left: 46%;
+  }
+
+  .floating[data-glyph="send"] {
+    bottom: 8%;
+    right: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating {
+    transform: rotate(var(--tilt, 0deg));
+  }
 }
 
 .title {
@@ -34,29 +165,8 @@
   box-shadow: var(--shadow-soft);
 }
 
-.chipRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-2);
-}
-
-.chip {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-
-.icon {
-  width: 22px;
-  height: 22px;
-}
-
 .index {
+  margin-bottom: var(--space-2);
   color: var(--color-muted);
   font-size: var(--font-h3);
   font-weight: 600;
@@ -84,12 +194,12 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  /* Graphic process line: a connector runs through the gap between chips, so
-     the four cards read as one flow. Its top matches the chip's centre. */
+  /* Graphic process line: a connector runs through the gap between cards, so
+     the four read as one flow. Its top matches the step number's centre. */
   .step:not(:last-child)::after {
     content: "";
     position: absolute;
-    top: calc(var(--space-5) + 22px);
+    top: calc(var(--space-5) + 16px);
     right: calc(var(--space-5) * -1);
     width: var(--space-5);
     height: 2px;
@@ -100,7 +210,7 @@
   .step:not(:last-child)::before {
     content: "";
     position: absolute;
-    top: calc(var(--space-5) + 22px - 3px);
+    top: calc(var(--space-5) + 16px - 3px);
     right: calc(var(--space-5) * -1 - 1px);
     width: 8px;
     height: 8px;

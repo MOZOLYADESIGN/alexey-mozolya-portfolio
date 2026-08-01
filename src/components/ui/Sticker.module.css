@@ -1,0 +1,24 @@
+/* Paper-sticker look: white plate, hard outline, soft shadow underneath. */
+.sticker {
+  display: grid;
+  place-items: center;
+  width: var(--sticker-size, 64px);
+  height: var(--sticker-size, 64px);
+  border: 2px solid var(--color-text);
+  background: var(--color-surface);
+  color: var(--color-text);
+  filter: drop-shadow(0 10px 16px rgb(11 11 11 / 0.14));
+}
+
+.sticker[data-shape="round"] {
+  border-radius: 50%;
+}
+
+.sticker[data-shape="square"] {
+  border-radius: var(--radius-md);
+}
+
+.glyph {
+  width: 45%;
+  height: 45%;
+}
