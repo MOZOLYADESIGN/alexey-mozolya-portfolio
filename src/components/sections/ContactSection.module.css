@@ -57,11 +57,19 @@
 }
 
 .secondary {
-  color: rgb(255 255 255 / 0.6);
+  /* 0.6 white on #0b0b0b falls under 4.5:1 — 0.75 clears it. */
+  color: rgb(255 255 255 / 0.75);
   font-size: var(--font-meta);
 }
 
-.secondaryLink {
-  color: rgb(255 255 255 / 0.9);
-  text-underline-offset: 3px;
+/* The round buttons invert on the dark panel. */
+.socials {
+  --social-border: rgb(255 255 255 / 0.24);
+  --social-fg: #ffffff;
+  --social-hover-border: #ffffff;
+  --social-hover-bg: #ffffff;
+  --social-hover-fg: #0b0b0b;
+
+  justify-content: center;
+  margin-top: var(--space-1);
 }

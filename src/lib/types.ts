@@ -19,7 +19,6 @@ export interface Project {
   summary: string;
   cover?: string;
   alt: string;
-  gradient?: string;
   isPublished: boolean;
   isPlaceholder: boolean;
 }

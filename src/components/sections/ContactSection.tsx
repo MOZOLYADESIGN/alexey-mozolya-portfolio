@@ -1,11 +1,9 @@
 import { ContactLink } from "@/components/ui/ContactLink";
-import { siteConfig } from "@/content/site";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 
 import styles from "./ContactSection.module.css";
 
 export function ContactSection() {
-  const secondary = siteConfig.contacts.filter((contact) => contact.kind !== "telegram");
-
   return (
     <section id="contact" className={styles.contact} aria-labelledby="contact-title">
       <div className={styles.panel}>
@@ -19,17 +17,8 @@ export function ContactSection() {
 
         <ContactLink className={styles.cta}>Написать в Telegram</ContactLink>
 
-        <p className={styles.secondary}>
-          Не любите Telegram?{" "}
-          {secondary.map((contact, index) => (
-            <span key={contact.kind}>
-              {index > 0 ? " · " : null}
-              <a className={styles.secondaryLink} href={contact.href}>
-                {contact.label}
-              </a>
-            </span>
-          ))}
-        </p>
+        <p className={styles.secondary}>Не любите Telegram?</p>
+        <SocialLinks className={styles.socials} exclude={["telegram"]} />
       </div>
     </section>
   );

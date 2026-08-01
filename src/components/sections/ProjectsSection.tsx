@@ -1,3 +1,4 @@
+import { Abstract } from "@/components/ui/Abstract";
 import { ContactLink } from "@/components/ui/ContactLink";
 import { projects, projectsArePlaceholders } from "@/content/projects";
 
@@ -20,7 +21,7 @@ export function ProjectsSection() {
         className={styles.grid}
         data-placeholder-copy={projectsArePlaceholders ? "true" : undefined}
       >
-        {visibleProjects.map((project) => (
+        {visibleProjects.map((project, index) => (
           <li className={styles.item} key={project.id}>
             <ContactLink
               className={styles.card}
@@ -29,12 +30,7 @@ export function ProjectsSection() {
               <span className={styles.frame}>
                 {/* Decorative until a real cover exists — the card is named by
                     its aria-label, so nothing is lost to a screen reader. */}
-                <span
-                  className={styles.cover}
-                  style={project.gradient ? { background: project.gradient } : undefined}
-                  aria-hidden="true"
-                  data-cover="true"
-                />
+                <Abstract seed={index} className={styles.cover} data-cover="true" />
                 <span className={styles.panel} data-panel="true">
                   <span className={styles.revealLine} data-reveal="line">{project.summary}</span>
                 </span>

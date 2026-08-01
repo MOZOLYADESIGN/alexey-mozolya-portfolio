@@ -42,7 +42,7 @@
 - `title`;
 - `category`;
 - `summary`;
-- `cover` или placeholder gradient;
+- `cover` (без него карточка получает сгенерированную абстракцию `Abstract`);
 - `alt`;
 - `isPublished`;
 - `isPlaceholder`.

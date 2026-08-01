@@ -1,0 +1,38 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+/*
+ * Colours come from --social-* so the same buttons work on the light page and
+ * on the dark contact panel without a second component.
+ */
+.button {
+  display: grid;
+  place-items: center;
+
+  /* 44px keeps the target comfortable well past the 24px AA minimum. */
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--social-border, var(--color-border));
+  border-radius: 50%;
+  background: var(--social-bg, transparent);
+  color: var(--social-fg, var(--color-text));
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.button:hover {
+  border-color: var(--social-hover-border, var(--color-text));
+  background: var(--social-hover-bg, var(--color-text));
+  color: var(--social-hover-fg, var(--color-surface));
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}

@@ -1,4 +1,5 @@
 import { Abstract } from "@/components/ui/Abstract";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { siteConfig } from "@/content/site";
 
 import styles from "./Footer.module.css";
@@ -34,15 +35,7 @@ export function Footer() {
 
             <div className={styles.col}>
               <p className={styles.colTitle}>Контакты</p>
-              <ul className={styles.colList}>
-                {siteConfig.contacts.map((contact) => (
-                  <li key={contact.kind}>
-                    <a className={styles.link} href={contact.href}>
-                      {contact.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <SocialLinks className={styles.socials} />
             </div>
           </nav>
         </div>
