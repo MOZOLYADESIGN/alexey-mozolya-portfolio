@@ -1,3 +1,4 @@
+import { withBasePath } from "@/lib/basePath";
 import type { Principle } from "@/lib/types";
 
 /**
@@ -14,7 +15,7 @@ export interface AboutPortrait {
 
 export const aboutPortrait: AboutPortrait = {
   // Портрет автора, перенесённый с первого экрана.
-  src: "/media/hero/hero-portrait-placeholder.webp",
+  src: withBasePath("/media/hero/hero-portrait-placeholder.webp"),
   width: 850,
   height: 840,
   alt: "Алексей Мозоля — портрет",

@@ -1,6 +1,7 @@
 import { ContactLink } from "@/components/ui/ContactLink";
 import { heroTitle, siteConfig } from "@/content/site";
 import { HERO_CTA_ID } from "@/lib/anchors";
+import { withBasePath } from "@/lib/basePath";
 
 import styles from "./HeroSection.module.css";
 
@@ -24,7 +25,7 @@ export function HeroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, explicit dimensions, no optimizer */}
         <img
           className={styles.invite}
-          src="/media/hero/hero-invite.webp"
+          src={withBasePath("/media/hero/hero-invite.webp")}
           width={900}
           height={977}
           alt="Алексей Мозоля приглашает к сотрудничеству"
