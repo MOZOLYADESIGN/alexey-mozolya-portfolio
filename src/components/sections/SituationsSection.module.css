@@ -1,7 +1,53 @@
 .situations {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--section-space);
+}
+
+.inner {
+  position: relative;
+  z-index: var(--z-raised);
   width: min(100% - (var(--page-gutter) * 2), var(--container));
   margin-inline: auto;
-  padding-block: var(--section-space);
+}
+
+/* ---- Background wash ---- */
+
+.wash {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+.mesh {
+  display: block;
+  width: 100%;
+  height: 100%;
+  --ab-blur: 64px;
+  opacity: 0.5;
+}
+
+/*
+ * Fades to the page colour at the very top and bottom — same technique as the
+ * footer's wash — so the mesh reads as one continuous surface running through
+ * the plain sections above and below, not a banded block with hard seams.
+ */
+.washFadeTop,
+.washFadeBottom {
+  position: absolute;
+  inset-inline: 0;
+  height: 40%;
+}
+
+.washFadeTop {
+  top: 0;
+  background: linear-gradient(to bottom, var(--color-bg) 0%, rgb(248 248 247 / 0) 100%);
+}
+
+.washFadeBottom {
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-bg) 0%, rgb(248 248 247 / 0) 100%);
 }
 
 .title {

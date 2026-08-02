@@ -37,6 +37,16 @@ test("hero: single h1 containing the exact phrase, no italic serif", async ({ pa
   expect(italics).toBe(0);
 });
 
+test("hero: the title wraps to exactly three lines at 1920px", async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto("/");
+  const lines = await page.locator("h1").evaluate((el) => {
+    const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+    return Math.round(el.getBoundingClientRect().height / lineHeight);
+  });
+  expect(lines).toBe(3);
+});
+
 test("hero: decorative rings and centre fade are present and aria-hidden", async ({ page }) => {
   await page.goto("/");
   const decorative = page.locator("#top [aria-hidden='true']");
