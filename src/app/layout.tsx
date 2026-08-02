@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { DesktopNav } from "@/components/navigation/DesktopNav";
 import { MobileNav } from "@/components/navigation/MobileNav";
+import { Footer } from "@/components/sections/Footer";
 import { siteConfig } from "@/content/site";
 
 import { lora, onest } from "./fonts";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <MobileNav />
         </header>
         {children}
+        <Footer />
       </body>
     </html>
   );

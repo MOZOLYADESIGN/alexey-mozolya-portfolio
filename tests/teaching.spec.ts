@@ -22,7 +22,7 @@ test.describe("teaching context (block 11)", () => {
     const figma = page.locator("#product-figma-mentoring");
     await expect(figma).toBeVisible();
     await expect(figma).toContainText("9 900 ₽");
-    await expect(figma.locator("a")).toHaveAttribute("href", "https://t.me/poofex");
+    await expect(figma.locator("a")).toHaveAttribute("href", "/figma/");
   });
 
   test("has no accessibility violations", async ({ page }) => {

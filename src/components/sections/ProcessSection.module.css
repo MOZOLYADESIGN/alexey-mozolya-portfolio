@@ -191,11 +191,11 @@
 
 @media (min-width: 1024px) {
   .list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   /* Graphic process line: a connector runs through the gap between cards, so
-     the four read as one flow. Its top matches the step number's centre. */
+     the row reads as one flow. Its top matches the step number's centre. */
   .step:not(:last-child)::after {
     content: "";
     position: absolute;

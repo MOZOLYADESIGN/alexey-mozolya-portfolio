@@ -9,9 +9,9 @@ test.describe("faq (block 13)", () => {
     await page.locator("#faq").scrollIntoViewIfNeeded();
   });
 
-  test("lists the six questions under one heading", async ({ page }) => {
+  test("lists the eight questions under one heading", async ({ page }) => {
     await expect(page.locator("#faq h2")).toHaveCount(1);
-    await expect(page.locator(ITEM)).toHaveCount(6);
+    await expect(page.locator(ITEM)).toHaveCount(8);
   });
 
   test("opens an answer in place and closes it again", async ({ page }) => {

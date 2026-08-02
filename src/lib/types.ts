@@ -32,14 +32,51 @@ export interface Service {
   details: string[];
 }
 
+export type ProductId = "consultation" | "ai-course" | "figma-mentoring";
+
 export interface Product {
-  id: "consultation" | "ai-course" | "figma-mentoring";
+  id: ProductId;
+  /** Route segment of the dedicated product page, e.g. "consultation". */
+  slug: string;
   title: string;
   contextLine: string;
   audience: string;
   outcome: string;
   format: string;
   included: string[];
+  price: string;
+  ctaLabel: string;
+}
+
+/** A named phase of the working process, rendered as a paragraph when it has
+ * one line or a bullet list when it has several. */
+export interface ProductPageStep {
+  title: string;
+  body: string[];
+}
+
+/**
+ * Full long-form page for one product — the 10-part structure: familiar
+ * problem, approach, process, what remains, who it's not for, objections,
+ * price, one action. "Примеры" (proof) is deliberately absent from the shape:
+ * it only exists once real material comes in, same rule as `proofs.ts`.
+ */
+export interface ProductPageContent {
+  id: ProductId;
+  slug: string;
+  heroTitle: string;
+  heroIntro: string;
+  problem: string;
+  situations: string[];
+  approach: string[];
+  processTitle: string;
+  processSteps: ProductPageStep[];
+  processNote?: string;
+  whatRemainsTitle: string;
+  whatRemains: string[];
+  notForTitle: string;
+  notFor: string[];
+  objections?: { question: string; answer: string }[];
   price: string;
   ctaLabel: string;
 }

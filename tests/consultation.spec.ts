@@ -16,12 +16,12 @@ test.describe("consultation callout", () => {
     await expect(nav).toHaveCount(1);
   });
 
-  test("shows the price and a single Telegram CTA, no form or popup", async ({ page }) => {
+  test("shows the price and a single CTA to the dedicated page, no form or popup", async ({ page }) => {
     await expect(page.locator("#products")).toContainText("5 000 ₽");
 
     const ctas = page.locator("#products a");
     await expect(ctas).toHaveCount(1);
-    await expect(ctas).toHaveAttribute("href", "https://t.me/poofex");
+    await expect(ctas).toHaveAttribute("href", "/consultation/");
 
     // MVP rule: no forms, no dialogs anywhere in the block.
     expect(await page.locator("#products form, #products dialog, #products input").count()).toBe(0);

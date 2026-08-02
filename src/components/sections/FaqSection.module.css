@@ -20,6 +20,10 @@
 
 /* Collapsed: a soft rounded row. Open: a raised white card. */
 .item {
+  /* Grid items default to min-width: auto, and `overflow-wrap: break-word`
+     does not shrink min-content — so one long Russian word in a question was
+     enough to push the whole row past the track and scroll the page at 320px. */
+  min-width: 0;
   border: 1px solid transparent;
   border-radius: var(--radius-lg);
   background: var(--color-bg);

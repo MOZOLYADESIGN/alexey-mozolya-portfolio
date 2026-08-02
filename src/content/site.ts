@@ -2,16 +2,13 @@ import type { ContactLink, NavItem } from "@/lib/types";
 
 export const siteConfig = {
   name: "Алексей Мозоля",
-  seoTitle: "Дизайн сайтов и цифровых продуктов — Алексей Мозоля",
+  seoTitle: "Разбор продукта, AI-процессы и наставничество по Figma — Алексей Мозоля",
   description:
-    "Алексей Мозоля — дизайнер интерфейсов и бренд-стратег. Проектирую сайты и цифровые продукты, развиваю визуальные системы и коммуникацию брендов.",
+    "Алексей Мозоля — дизайнер продуктов и наставник. Разбираю продукты и визуальные системы, собираю персональные AI-процессы и обучаю системной работе в Figma.",
   hero: {
-    // The phrase is fixed. It is split only so the tail can be set in the
-    // serif italic accent; `heroTitle` below keeps the full string intact.
-    titleLead: "Прокачиваю смыслы, визуал, стратегию и коммуникацию",
-    titleAccent: "цифровых продуктов",
+    title: "Помогаю понять задачу, собрать рабочую систему и научиться действовать самостоятельно",
     subtitle:
-      "Помогаю цифровым продуктам становиться сильнее по смыслу и визуально: анализирую продукт, нахожу точки роста и собираю стратегию развития.",
+      "Разбираю продукты и визуальные решения, выстраиваю персональные AI-процессы и обучаю системной работе в Figma.",
   },
   contacts: [
     {
@@ -33,7 +30,7 @@ export const siteConfig = {
   navigation: [
     { label: "Обо мне", href: "#about" },
     { label: "Работы", href: "#projects" },
-    { label: "Услуги", href: "#services" },
+    { label: "С чего начать", href: "#situations" },
     { label: "Продукты", href: "#products" },
     { label: "Мысли", href: "#thoughts" },
     { label: "Контакты", href: "#contact" },
@@ -41,6 +38,4 @@ export const siteConfig = {
 } as const;
 
 export const telegramUrl = siteConfig.contacts[0].href;
-
-export const heroTitle = `${siteConfig.hero.titleLead} ${siteConfig.hero.titleAccent}`;
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 import { Abstract } from "@/components/ui/Abstract";
-import { ContactLink } from "@/components/ui/ContactLink";
 import { products } from "@/content/products";
 import type { Product } from "@/lib/types";
 
@@ -93,7 +93,9 @@ export function ProductCallout({ productId, sectionId }: ProductCalloutProps) {
 
           <div className={styles.action}>
             <span className={styles.price}>{product.price}</span>
-            <ContactLink className={styles.cta}>{product.ctaLabel}</ContactLink>
+            <Link className={styles.cta} href={`/${product.slug}`}>
+              {product.ctaLabel}
+            </Link>
           </div>
         </div>
       </div>

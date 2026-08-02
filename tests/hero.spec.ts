@@ -19,7 +19,9 @@ test("hero: single h1 containing the exact phrase, no italic serif", async ({ pa
   const h1 = page.locator("h1");
   await expect(h1).toHaveCount(1);
   const text = (await h1.innerText()).replace(/\s+/g, " ").trim();
-  expect(text).toBe("Прокачиваю смыслы, визуал, стратегию и коммуникацию цифровых продуктов");
+  expect(text).toBe(
+    "Помогаю понять задачу, собрать рабочую систему и научиться действовать самостоятельно",
+  );
 
   // The title uses the main sans face — no serif italic accent remains.
   const style = await h1.evaluate((el) => {
@@ -44,17 +46,21 @@ test("hero: decorative rings and centre fade are present and aria-hidden", async
   expect(align).toBe("center");
 });
 
-test("hero: CTAs point at telegram and projects", async ({ page }) => {
+test("hero: CTAs point at the request flow and the product cards", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("#top a[href='https://t.me/poofex']")).toHaveCount(1);
-  await expect(page.locator("#top a[href='#projects']")).toHaveCount(1);
+  // basePath is off in this preview build; trailingSlash is on regardless.
+  await expect(page.locator("#top a", { hasText: "Разобрать задачу" })).toHaveAttribute(
+    "href",
+    "/request/",
+  );
+  await expect(page.locator("#top a[href='#products']")).toHaveCount(1);
 });
 
 test("hero: CTAs span the full width below 768px", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  const primary = (await page.locator("#top a", { hasText: "Написать в Telegram" }).boundingBox())!;
-  const secondary = (await page.locator("#top a", { hasText: "Смотреть работы" }).boundingBox())!;
+  const primary = (await page.locator("#top a", { hasText: "Разобрать задачу" }).boundingBox())!;
+  const secondary = (await page.locator("#top a", { hasText: "Посмотреть услуги" }).boundingBox())!;
   // Both buttons share one full-width column.
   expect(Math.round(primary.width)).toBe(Math.round(secondary.width));
   expect(primary.width).toBeGreaterThan(300);
@@ -63,7 +69,7 @@ test("hero: CTAs span the full width below 768px", async ({ page }) => {
 test("hero: CTAs stop stretching from 768px up", async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 1024 });
   await page.goto("/");
-  const cta = (await page.locator("#top a", { hasText: "Написать в Telegram" }).boundingBox())!;
+  const cta = (await page.locator("#top a", { hasText: "Разобрать задачу" }).boundingBox())!;
   expect(cta.width).toBeLessThan(320);
 });
 

@@ -7,9 +7,9 @@ test.describe("process (block 10)", () => {
     await page.locator("#process").scrollIntoViewIfNeeded();
   });
 
-  test("shows four ordered steps with titles and no icons on the cards", async ({ page }) => {
+  test("shows five ordered steps with titles and no icons on the cards", async ({ page }) => {
     const steps = page.locator("#process ol > li");
-    await expect(steps).toHaveCount(4);
+    await expect(steps).toHaveCount(5);
     for (const step of await steps.all()) {
       await expect(step.locator("svg")).toHaveCount(0);
       await expect(step.locator("h3")).toHaveText(/\S/);

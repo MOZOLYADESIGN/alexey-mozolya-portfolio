@@ -30,7 +30,7 @@ test.describe("thoughts (block 9)", () => {
     const course = page.locator("#product-ai-course");
     await expect(course).toBeVisible();
     await expect(course).toContainText("7 700 ₽");
-    await expect(course.locator("a")).toHaveAttribute("href", "https://t.me/poofex");
+    await expect(course.locator("a")).toHaveAttribute("href", "/ai-sprint/");
   });
 
   test("has no accessibility violations", async ({ page }) => {

@@ -1,12 +1,13 @@
-import { ContactLink } from "@/components/ui/ContactLink";
-import { heroTitle, siteConfig } from "@/content/site";
+import Link from "next/link";
+
 import { HERO_CTA_ID } from "@/lib/anchors";
 import { withBasePath } from "@/lib/basePath";
+import { siteConfig } from "@/content/site";
 
 import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
-  const { subtitle } = siteConfig.hero;
+  const { title, subtitle } = siteConfig.hero;
 
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
@@ -32,15 +33,15 @@ export function HeroSection() {
           fetchPriority="high"
         />
         <h1 className={styles.title} id="hero-title">
-          {heroTitle}
+          {title}
         </h1>
         <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.actions}>
-          <ContactLink id={HERO_CTA_ID} className={styles.primary}>
-            Написать в Telegram
-          </ContactLink>
-          <a className={styles.secondary} href="#projects">
-            Смотреть работы
+          <Link id={HERO_CTA_ID} className={styles.primary} href="/request">
+            Разобрать задачу
+          </Link>
+          <a className={styles.secondary} href="#products">
+            Посмотреть услуги
           </a>
         </div>
       </div>

@@ -3,7 +3,16 @@ import { expect, test } from "@playwright/test";
 
 const CARD = "#services details";
 
-test.describe("services", () => {
+/**
+ * The services accordion is off the page for now: the three-product system
+ * (consultation / AI sprint / Figma mentoring) replaced it, and the author's
+ * marketing brief has no block for the four older commercial formats.
+ *
+ * `ServicesSection` and `content/services.ts` are still in the repo, so
+ * restoring the block is one import in `app/page.tsx` — these tests come back
+ * with it. Everything below is unchanged from when it last passed.
+ */
+test.describe.skip("services", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     await page.locator("#services").scrollIntoViewIfNeeded();
@@ -62,7 +71,7 @@ test.describe("services", () => {
   });
 });
 
-test.describe("services on desktop", () => {
+test.describe.skip("services on desktop", () => {
   test.skip(({ isMobile }) => Boolean(isMobile));
 
   test("keeps several cards open at once", async ({ page }) => {
@@ -78,7 +87,7 @@ test.describe("services on desktop", () => {
   });
 });
 
-test.describe("services on mobile", () => {
+test.describe.skip("services on mobile", () => {
   test.skip(({ isMobile }) => !isMobile);
 
   test("opens as an accordion — one card at a time", async ({ page }) => {

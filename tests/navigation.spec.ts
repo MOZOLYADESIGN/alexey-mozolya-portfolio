@@ -52,13 +52,13 @@ test.describe("desktop nav", () => {
 
   test("marks the active section", async ({ page }) => {
     await page.goto("/");
-    await page.locator("#services").scrollIntoViewIfNeeded();
+    await page.locator("#situations").scrollIntoViewIfNeeded();
     await page.waitForTimeout(600);
     const current = await page
       .locator("nav[aria-label='Основная навигация'] a[aria-current='true']")
       .innerText();
     console.log({ current });
-    expect(current).toBe("Услуги");
+    expect(current).toBe("С чего начать");
   });
 });
 
@@ -106,7 +106,7 @@ test.describe("mobile drawer", () => {
     await expect(telegram).toBeHidden();
     const menuAlone = (await menu.boundingBox())!;
 
-    await page.locator("#services").scrollIntoViewIfNeeded();
+    await page.locator("#situations").scrollIntoViewIfNeeded();
     await page.waitForTimeout(600);
 
     await expect(telegram).toBeVisible();
