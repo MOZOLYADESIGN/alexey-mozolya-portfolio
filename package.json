@@ -10,7 +10,10 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "npm run build && node scripts/validate-build.mjs"
+    "cms:typecheck": "tsc -p cms-worker/tsconfig.json",
+    "cms:test": "node --test cms-worker/tests/*.test.ts",
+    "cms:check": "npm run cms:typecheck && npm run cms:test",
+    "check": "npm run build && node scripts/validate-build.mjs && npm run cms:check"
   },
   "devDependencies": {
     "typescript": "5.9.3",

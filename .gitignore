@@ -4,4 +4,5 @@ dist
 screenshots
 *.log
 *.tsbuildinfo
+.dev.vars
 .DS_Store

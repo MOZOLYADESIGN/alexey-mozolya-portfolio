@@ -1,0 +1,6 @@
+TELEGRAM_BOT_TOKEN=replace_with_test_bot_token
+TELEGRAM_WEBHOOK_SECRET=replace_with_random_A-Za-z0-9_-_value
+GITHUB_TOKEN=replace_with_fine_grained_test_token
+GITHUB_OWNER=replace_with_owner
+GITHUB_REPO=replace_with_repository
+TELEGRAM_ALLOWED_USER_IDS=123456789

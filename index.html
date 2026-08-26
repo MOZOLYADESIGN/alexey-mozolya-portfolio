@@ -2,51 +2,41 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <!-- security-policy -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#fdfdff" />
     <meta
       name="description"
-      content="Портфолио Алексея Мозоли — продуктового и UX/UI-дизайнера из Красноярска. Опыт в цифровых продуктах, сайтах, коммуникациях и наставничестве."
+      content="{{seo.description}}"
     />
-    <meta name="author" content="Алексей Мозоля" />
-    <link rel="canonical" href="https://mozolyadesign.github.io/alexey-mozolya-portfolio/" />
+    <meta name="author" content="{{identity.name}}" />
+    <link rel="canonical" href="{{seo.canonical}}" />
     <link rel="icon" type="image/png" href="./favicon.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
-    <meta property="og:title" content="Алексей Мозоля — дизайнер интерфейсов и продуктов" />
+    <meta property="og:title" content="{{seo.shareTitle}}" />
     <meta
       property="og:description"
-      content="Интерфейсы, цифровые продукты, коммуникационные материалы и наставничество."
+      content="{{seo.shareDescription}}"
     />
-    <meta property="og:url" content="https://mozolyadesign.github.io/alexey-mozolya-portfolio/" />
-    <meta property="og:image" content="https://mozolyadesign.github.io/alexey-mozolya-portfolio/og-cover.webp" />
+    <meta property="og:url" content="{{seo.canonical}}" />
+    <meta property="og:image" content="{{seo.ogImage}}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Портфолио Алексея Мозоли" />
+    <meta property="og:image:alt" content="{{seo.ogImageAlt}}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Алексей Мозоля — дизайнер интерфейсов и продуктов" />
+    <meta name="twitter:title" content="{{seo.shareTitle}}" />
     <meta
       name="twitter:description"
-      content="Интерфейсы, цифровые продукты, коммуникационные материалы и наставничество."
+      content="{{seo.shareDescription}}"
     />
-    <meta name="twitter:image" content="https://mozolyadesign.github.io/alexey-mozolya-portfolio/og-cover.webp" />
-    <title>Алексей Мозоля — продуктовый и UX/UI-дизайнер</title>
+    <meta name="twitter:image" content="{{seo.ogImage}}" />
+    <title>{{seo.title}}</title>
     <link rel="stylesheet" href="/src/styles/index.css" />
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Алексей Мозоля",
-        "jobTitle": "Продуктовый и UX/UI-дизайнер",
-        "email": "mailto:mozolya000@gmail.com",
-        "url": "https://mozolyadesign.github.io/alexey-mozolya-portfolio/",
-        "sameAs": ["https://t.me/poofex"],
-        "homeLocation": {
-          "@type": "Place",
-          "name": "Красноярск"
-        }
-      }
+{{structuredData}}
     </script>
   </head>
   <body>
@@ -55,10 +45,10 @@
     <div class="site-frame">
       <header>
         <nav class="side-nav" aria-label="Навигация по странице" data-nav>
-          <a class="nav-link is-active" href="#essence" aria-current="location">Моя суть</a>
-          <a class="nav-link" href="#experience">Опыт</a>
-          <a class="nav-link" href="#about">Обо мне</a>
-          <a class="nav-link" href="#contacts">Контакты</a>
+          <a class="nav-link is-active" href="#essence" aria-current="location">{{navigation.essence}}</a>
+          <a class="nav-link" href="#experience">{{navigation.experience}}</a>
+          <a class="nav-link" href="#about">{{navigation.about}}</a>
+          <a class="nav-link" href="#contacts">{{navigation.contacts}}</a>
         </nav>
 
         <div class="mobile-nav-scroll">
@@ -67,10 +57,10 @@
             <span>Меню</span>
           </button>
           <nav class="mobile-nav" id="mobile-navigation" aria-label="Навигация по странице" data-nav>
-            <a class="nav-link is-active" href="#essence" aria-current="location">Моя суть</a>
-            <a class="nav-link" href="#experience">Опыт</a>
-            <a class="nav-link" href="#about">Обо мне</a>
-            <a class="nav-link" href="#contacts">Контакты</a>
+            <a class="nav-link is-active" href="#essence" aria-current="location">{{navigation.essence}}</a>
+            <a class="nav-link" href="#experience">{{navigation.experience}}</a>
+            <a class="nav-link" href="#about">{{navigation.about}}</a>
+            <a class="nav-link" href="#contacts">{{navigation.contacts}}</a>
           </nav>
         </div>
       </header>
@@ -87,7 +77,7 @@
           />
           <div class="hero__content content-column">
             <div class="hero-heading">
-              <h1 id="hero-title">Привет, я <span>Лёша</span></h1>
+              <h1 id="hero-title">{{hero.greeting}} <span>{{hero.name}}</span></h1>
               <img class="hero-heading__sun" src="./assets/hero-sun.svg" width="48" height="48" alt="" aria-hidden="true" />
             </div>
 
@@ -104,15 +94,15 @@
                 />
               </div>
               <div class="hero-card__copy">
-                <p>Я дизайнер интерфейсов, продуктов, коммуникационных и маркетинговых материалов, наставник в школе дизайна.</p>
-                <p>Люблю когда мой труд помогает людям. Пользователи, довольные продуктами, насыщают жизнь вокруг себя чем-то добрым и светлым — это моя цель</p>
+                <p>{{hero.descriptions.0}}</p>
+                <p>{{hero.descriptions.1}}</p>
               </div>
             </div>
 
             <div class="hero-meta" aria-label="Кратко об Алексее">
-              <span>Красноярск (МСК+4)</span>
-              <span>Скорпион</span>
-              <span>2002</span>
+              <span>{{hero.meta.0}}</span>
+              <span>{{hero.meta.1}}</span>
+              <span>{{hero.meta.2}}</span>
             </div>
           </div>
         </section>
@@ -120,137 +110,50 @@
         <div class="content-flow content-column">
           <section class="experience" id="experience" aria-labelledby="experience-title" data-section="experience" data-animate>
             <div class="experience__intro">
-              <h2 class="section-label" id="experience-title">Опыт</h2>
+              <h2 class="section-label" id="experience-title">{{experience.label}}</h2>
               <div class="experience-summary">
                 <div class="timeline timeline--summary" aria-label="Более четырёх лет опыта">
-                  <span class="timeline-pill">4+ года</span>
+                  <span class="timeline-pill">{{experience.summaryYears}}</span>
                   <img class="timeline__trail" src="./assets/timeline-summary-line.svg" width="280" height="2" alt="" aria-hidden="true" />
                 </div>
                 <p>
-                  За время работы с разными студиями поучаствовал в работе над проектами со всей России — дизайн сайтов, админ панелей, отдельных флоу, маркетинговых материалов, креативов и всего что касается диджитала
+                  {{experience.summaryText}}
                 </p>
               </div>
             </div>
 
             <div class="experience-list">
-              <article class="experience-item" data-project="starta">
-                <h3 class="visually-hidden">Диджитал-агентство СТАРТА</h3>
-                <div class="timeline timeline--project" aria-label="С 2026 года по настоящее время, аутстафф">
-                  <span>2026</span>
-                  <img class="timeline__year-line" src="./assets/timeline-year-line.svg" width="36" height="2" alt="" aria-hidden="true" />
-                  <span>Настоящее время</span>
-                  <img class="timeline__trail" src="./assets/timeline-starta-line.svg" width="386" height="2" alt="" aria-hidden="true" />
-                  <span class="timeline__mode">аутстафф</span>
-                </div>
-                <p>
-                  Диджитал-агентство СТАРТА — помогаю ребятам в дизайне лендингов, многостраничных сайтов, делаю креативы. Участвую в доведении макета до продакшена и поддержке вёрстки.
-                </p>
-                <div class="project-collage project-collage--starta" aria-label="Проекты для агентства СТАРТА">
-                  <img class="collage-item collage-item--1" src="./assets/starta-project-01.webp" width="1100" height="923" loading="lazy" decoding="async" alt="Лендинг проекта на тёмном фоне" />
-                  <img class="collage-item collage-item--2" src="./assets/starta-project-02.webp" width="1100" height="961" loading="lazy" decoding="async" alt="Интерфейс сайта с карточками" />
-                  <img class="collage-item collage-item--3" src="./assets/starta-project-03.webp" width="1100" height="797" loading="lazy" decoding="async" alt="Лендинг гастрономического проекта" />
-                  <img class="collage-item collage-item--4" src="./assets/starta-project-04.webp" width="414" height="1306" loading="lazy" decoding="async" alt="Мобильная версия лендинга" />
-                </div>
-              </article>
-
-              <article class="experience-item" data-project="jobs">
-                <h3 class="visually-hidden">Школа дизайна ДЖОБС.</h3>
-                <div class="timeline timeline--project" aria-label="С 2024 года по настоящее время, инхаус">
-                  <span>2024</span>
-                  <img class="timeline__year-line" src="./assets/timeline-year-line.svg" width="36" height="2" alt="" aria-hidden="true" />
-                  <span>Настоящее время</span>
-                  <img class="timeline__trail" src="./assets/timeline-jobs-line.svg" width="386" height="2" alt="" aria-hidden="true" />
-                  <span class="timeline__mode">инхаус</span>
-                </div>
-                <div class="experience-item__copy">
-                  <p>
-                    Школа дизайна ДЖОБС. — вместе с командой настроил бренд-стратегию и позиционирование. ArtTech <span class="muted">(так раньше называлась школа)</span> перестала существовать, и мы с командой ушли в свободное плавание — ребрендинг и продуктовая стратегия.
-                  </p>
-                  <p>Сделал программу обучения веб-дизайнеров. Наставляю и поддерживаю студентов. Лидирую проекты на защите, формирую сообщество выпущенных студентов.</p>
-                  <p>
-                    Задизайнил сайт с фокусом на конверсию заявки на пробный урок. Отрисовал вручную все иллюстрации. Через год участвовал в редизайне сайта: Mobile First, стиль Web App, минимализм и фокус на кейсах студентов.
-                  </p>
-                  <p>Поддерживаю соцсети и дизайню для них карточки, обложки постов и разные интерактивности.</p>
-                </div>
-                <div class="project-collage project-collage--jobs" aria-label="Проекты для школы дизайна ДЖОБС.">
-                  <img class="collage-item collage-item--1" src="./assets/jobs-project-01.webp" width="630" height="800" loading="lazy" decoding="async" alt="Первая версия сайта школы дизайна" />
-                  <img class="collage-item collage-item--2" src="./assets/jobs-project-02.webp" width="640" height="2478" loading="lazy" decoding="async" alt="Мобильный экран сайта школы" />
-                  <img class="collage-item collage-item--3" src="./assets/jobs-project-03.webp" width="786" height="1484" loading="lazy" decoding="async" alt="Публикация школы в социальных сетях" />
-                  <img class="collage-item collage-item--4" src="./assets/jobs-project-04.webp" width="722" height="2368" loading="lazy" decoding="async" alt="Редизайн сайта школы" />
-                </div>
-              </article>
-
-              <article class="experience-item" data-project="apex">
-                <h3 class="visually-hidden">Диджитал-агентство APEXWEB</h3>
-                <div class="timeline timeline--project" aria-label="С 2024 по 2025 год, аутстафф">
-                  <span>2024</span>
-                  <img class="timeline__year-line" src="./assets/timeline-year-line.svg" width="36" height="2" alt="" aria-hidden="true" />
-                  <span>2025</span>
-                  <img class="timeline__trail" src="./assets/timeline-apex-line.svg" width="486" height="2" alt="" aria-hidden="true" />
-                  <span class="timeline__mode">аутстафф</span>
-                </div>
-                <p>
-                  Диджитал-агентство APEXWEB — редизайн сайта Telezon <span class="muted">(одного из крупных B2B-провайдеров Красноярска)</span>. Редизайн корпоративного сайта самой студии APEXWEB. Активно работал с фреймворками Bootstrap и Tailwind.
-                </p>
-                <div class="project-collage project-collage--apex" aria-label="Проекты для агентства APEXWEB">
-                  <img class="collage-item collage-item--1" src="./assets/apex-project-01.webp" width="550" height="414" loading="lazy" decoding="async" alt="Главная страница APEXWEB" />
-                  <img class="collage-item collage-item--2" src="./assets/apex-project-02.webp" width="900" height="706" loading="lazy" decoding="async" alt="Сайт телеком-провайдера Telezon" />
-                  <img class="collage-item collage-item--3" src="./assets/apex-project-03.webp" width="224" height="348" loading="lazy" decoding="async" alt="Мобильный экран Telezon" />
-                </div>
-              </article>
-
-              <article class="experience-item" data-project="trenera">
-                <h3 class="visually-hidden">Приложение TRENERA.RU</h3>
-                <div class="timeline timeline--project" aria-label="В 2024 году, инхаус">
-                  <span>2024</span>
-                  <img class="timeline__year-line" src="./assets/timeline-year-line.svg" width="36" height="2" alt="" aria-hidden="true" />
-                  <span>2024</span>
-                  <img class="timeline__trail" src="./assets/timeline-trenera-line.svg" width="486" height="2" alt="" aria-hidden="true" />
-                  <span class="timeline__mode">инхаус</span>
-                </div>
-                <div class="experience-item__copy">
-                  <p>
-                    TRENERA.RU — дизайнил рекламные креативы, создавал материалы для SMM-дизайн-системы. Добавил раздел с историями на главный экран приложения. Предложил и реализовал онбординг <span class="muted">(в приложении он есть до сих пор)</span>, который помогает новым пользователям освоиться и найти наставника.
-                  </p>
-                  <p>Поддерживал и развивал сайт TRENERA.RU.</p>
-                </div>
-                <div class="project-collage project-collage--trenera" aria-label="Онбординг мобильного приложения TRENERA.RU">
-                  <img class="collage-item collage-item--1" src="./assets/trenera-project-01.webp" width="576" height="1280" loading="lazy" decoding="async" alt="Онбординг приложения: цели" />
-                  <img class="collage-item collage-item--2" src="./assets/trenera-project-02.webp" width="576" height="1280" loading="lazy" decoding="async" alt="Онбординг приложения: предпочтения" />
-                  <img class="collage-item collage-item--3" src="./assets/trenera-project-03.webp" width="576" height="1280" loading="lazy" decoding="async" alt="Онбординг приложения: поддержка" />
-                  <img class="collage-item collage-item--4" src="./assets/trenera-project-04.webp" width="576" height="1280" loading="lazy" decoding="async" alt="Онбординг приложения: результат" />
-                </div>
-              </article>
+              {{experienceItems}}
             </div>
           </section>
 
           <section class="about" id="about" aria-labelledby="about-title" data-section="about" data-animate>
-            <h2 class="section-label" id="about-title">Немного обо мне</h2>
+            <h2 class="section-label" id="about-title">{{about.label}}</h2>
             <div class="about__copy">
               <p>
-                Родился и вырос в Красноярске, в Сибири. Много рисовал, танцевал, играл на музыкальных инструментах — и всё без образования, и всё плохо. С детства понимал, что пригожусь в чём-то творческом и энергичном — так попал в дизайн, каждый раз возвращаясь к нему в течение жизни.
+                {{about.paragraphs.0}}
               </p>
-              <p>Дизайн вдохновляет и даёт понять, что труд, которым я занимаюсь, — очередное доказательство себе в том, что я полезен и нужен.</p>
+              <p>{{about.paragraphs.1}}</p>
               <p>
-                Начал думать о том, как приносить максимальную выгоду и пользу людям вокруг с помощью дизайна и моей эмпатии — так и попал в диджитал и UX/UI.
+                {{about.paragraphs.2}}
               </p>
-              <p>Люблю решать сложные задачи, общаться во время этого с напарниками и командой, видеть прогресс и ставить новые цели.</p>
+              <p>{{about.paragraphs.3}}</p>
             </div>
             <p class="about__note">
-              Люблю вечера с фильмами, смех друзей и хочу, чтобы всё было хорошо.<br />
-              Скоро у меня будет собака, назову её Данте.
+              {{about.noteLines.0}}<br />
+              {{about.noteLines.1}}
             </p>
           </section>
 
           <footer class="contacts" id="contacts" aria-labelledby="contacts-title" data-section="contacts" data-animate>
-            <h2 class="section-label" id="contacts-title">Контакты</h2>
+            <h2 class="section-label" id="contacts-title">{{contacts.label}}</h2>
             <div class="contact-cta">
               <img class="contact-cta__star" src="./assets/cta-star.svg" width="688" height="688" alt="" aria-hidden="true" />
               <div class="contact-cta__content">
-                <p class="contact-cta__title">Давайте сделаем<br />что-то крутое вместе</p>
+                <p class="contact-cta__title">{{contacts.ctaLines.0}}<br />{{contacts.ctaLines.1}}</p>
                 <div class="contact-cta__actions">
-                  <a class="contact-cta__button contact-cta__button--telegram" href="https://t.me/poofex" target="_blank" rel="noreferrer">Связаться в телеграме</a>
-                  <a class="contact-cta__button contact-cta__button--email" href="mailto:mozolya000@gmail.com">Связаться по почте</a>
+                  <a class="contact-cta__button contact-cta__button--telegram" href="{{contacts.telegram.url}}" target="_blank" rel="noopener noreferrer">{{contacts.telegram.label}}</a>
+                  <a class="contact-cta__button contact-cta__button--email" href="{{contacts.emailHref}}">{{contacts.email.label}}</a>
                 </div>
               </div>
               <img
@@ -264,7 +167,7 @@
                 decoding="async"
               />
             </div>
-            <p class="site-copyright">© 2026 Алексей Мозоля. Все права защищены.</p>
+            <p class="site-copyright">{{contacts.copyright}}</p>
           </footer>
         </div>
       </main>

@@ -22,10 +22,10 @@
   --color-surface: #ffffff;
   --color-text: #000000;
   --color-body: rgba(0, 0, 0, 0.85);
-  --color-muted: rgba(0, 0, 0, 0.4);
+  --color-muted: rgba(0, 0, 0, 0.58);
   --color-accent: #e98800;
   --color-accent-soft: rgba(233, 136, 0, 0.1);
-  --color-hero-accent: #ff9d12;
+  --color-hero-accent: #a65300;
   --color-hero-accent-soft: rgba(255, 157, 18, 0.1);
   --color-telegram: #2481cc;
   --content-width: 716px;

@@ -50,8 +50,8 @@ if ("IntersectionObserver" in window) {
       }
 
       const current = Array.from(visible.values()).sort((a, b) => {
-        if (b.intersectionRatio !== a.intersectionRatio) return b.intersectionRatio - a.intersectionRatio;
-        return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top);
+        const readingLine = window.innerHeight * 0.45;
+        return Math.abs(a.boundingClientRect.top - readingLine) - Math.abs(b.boundingClientRect.top - readingLine);
       })[0];
 
       if (current && sectionIds.includes(current.target.id as SectionId)) {
