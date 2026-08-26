@@ -1,44 +1,55 @@
-# Портфолио Алексея Мозоли — starter kit
+# Портфолио Алексея Мозоли
 
-Комплект содержит:
+Новая одностраничная версия портфолио по Figma node `771:9904`.
 
-- мастер-промпт для Claude Code;
-- подробное техническое задание в `/docs`;
-- статический Next.js scaffold;
-- типизированные контентные коллекции;
-- базовые проверки TypeScript, ESLint, Playwright и axe.
+## Стек
+
+- Vite 8;
+- TypeScript;
+- семантический HTML5;
+- обычный CSS с дизайн-токенами;
+- нативный `IntersectionObserver` для active navigation;
+- ноль runtime dependencies.
+
+Изображения и Onest хранятся локально. В production-коде нет временных Figma URL.
 
 ## Локальный запуск
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Открой `http://localhost:3000`.
+Dev URL: `http://localhost:5173/alexey-mozolya-portfolio/`.
 
-## Проверки
-
-Один раз установи браузер для Playwright:
+## Production preview
 
 ```bash
-npx playwright install chromium
+npm run check
+npm run preview
 ```
 
-Затем:
+Preview URL: `http://127.0.0.1:4173/alexey-mozolya-portfolio/`.
 
-```bash
-npm run typecheck
-npm run lint
-npm run build
-npm run test:a11y
+`npm run check` выполняет TypeScript-проверку, production build и валидацию base path, системных файлов, временных URL и размера production assets.
+
+## Структура
+
+```text
+src/
+  main.ts            # active-section navigation
+  styles/            # tokens, base, layout, components, responsive
+  assets/fonts/      # self-hosted Onest WOFF2
+public/
+  assets/             # Figma images and SVG
+  robots.txt
+  sitemap.xml
 ```
 
-Статический результат появляется в `/out` после `npm run build`.
+## GitHub Pages
 
-## Перед визуальной разработкой
+Vite base: `/alexey-mozolya-portfolio/`.
 
-1. Прочитать `MASTER_PROMPT.md`.
-2. Утвердить архитектуру и дизайн-токены.
-3. Работать по одному блоку.
-4. Не заменять заглушки выдуманным контентом.
+Workflow `.github/workflows/deploy.yml` публикует `dist` только после push в `master`. Feature-ветка сама по себе production deployment не запускает.
+
+Публикация редизайна запрещена до прямого подтверждения владельца: `Публикуй`.

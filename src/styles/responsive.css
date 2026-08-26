@@ -1,0 +1,361 @@
+@media (max-width: 1279px) {
+  html {
+    scroll-padding-top: 92px;
+  }
+
+  .side-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    z-index: 20;
+    top: 12px;
+    left: 50%;
+    display: flex;
+    width: min(calc(100% - 24px), 716px);
+    justify-content: space-between;
+    gap: 4px;
+    padding: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    background: rgba(253, 253, 255, 0.88);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-nav .nav-link {
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 11px;
+    transform: none;
+  }
+
+  .mobile-nav .nav-link.is-active {
+    background: var(--color-text);
+    color: #fff;
+  }
+
+  .hero__content {
+    padding-top: 330px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-padding: 16px;
+    --section-gap: 72px;
+  }
+
+  body {
+    font-size: 17px;
+  }
+
+  .site-frame {
+    min-height: 0;
+  }
+
+  .mobile-nav {
+    font-size: 10px;
+  }
+
+  .mobile-nav .nav-link {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding-inline: 6px;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__background {
+    top: -330px;
+    width: 1320px;
+    height: 632px;
+  }
+
+  .hero__content {
+    padding-top: 138px;
+    padding-bottom: 104px;
+  }
+
+  .hero h1 {
+    max-width: 340px;
+    margin-bottom: 20px;
+    font-size: clamp(28px, 8.5vw, 36px);
+    letter-spacing: -0.5px;
+  }
+
+  .hero-card {
+    min-height: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .hero-card__portrait {
+    width: 96px;
+    height: 112px;
+    flex: 0 0 112px;
+    margin: -8px 0 -6px -10px;
+  }
+
+  .hero-card__copy {
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .hero-meta {
+    gap: 12px;
+    margin-top: 18px;
+    font-size: 13px;
+  }
+
+  .content-flow {
+    padding-bottom: 104px;
+  }
+
+  .section-label {
+    font-size: 14px;
+  }
+
+  .experience,
+  .about,
+  .contacts {
+    scroll-margin-top: 88px;
+  }
+
+  .timeline {
+    font-size: 12px;
+  }
+
+  .timeline--summary {
+    height: 27px;
+  }
+
+  .timeline-pill {
+    height: 27px;
+    padding-inline: 8px;
+    border-radius: 7px;
+    font-size: 11px;
+  }
+
+  .timeline--summary > img:not(.timeline__trail) {
+    width: 14px;
+  }
+
+  .timeline--summary .timeline__trail {
+    display: none;
+  }
+
+  .timeline__year-line {
+    width: 18px;
+    margin-inline: 6px;
+  }
+
+  .timeline__trail {
+    min-width: 10px;
+    margin-left: 6px;
+  }
+
+  .timeline__mode {
+    padding-inline: 4px 0;
+  }
+
+  .experience-item,
+  .experience-item__copy {
+    gap: 14px;
+  }
+
+  .project-collage {
+    margin-top: 4px;
+  }
+
+  .project-collage--starta {
+    height: 318px;
+  }
+
+  .project-collage--starta .collage-item--1 {
+    top: 8px;
+    left: 0;
+    width: 70%;
+    height: 196px;
+  }
+
+  .project-collage--starta .collage-item--2 {
+    top: 80px;
+    left: 18%;
+    width: 70%;
+    height: 188px;
+  }
+
+  .project-collage--starta .collage-item--3 {
+    top: 146px;
+    right: 0;
+    left: auto;
+    width: 69%;
+    height: 170px;
+  }
+
+  .project-collage--starta .collage-item--4 {
+    top: 21px;
+    right: 0;
+    left: auto;
+    width: 25%;
+    height: 238px;
+  }
+
+  .project-collage--jobs {
+    height: 350px;
+  }
+
+  .project-collage--jobs .collage-item--1 {
+    top: 20px;
+    left: 0;
+    width: 58%;
+    height: 272px;
+  }
+
+  .project-collage--jobs .collage-item--2 {
+    top: 82px;
+    left: 42%;
+    width: 30%;
+    height: 266px;
+  }
+
+  .project-collage--jobs .collage-item--3 {
+    top: 0;
+    right: 11%;
+    left: auto;
+    width: 31%;
+    height: 210px;
+  }
+
+  .project-collage--jobs .collage-item--4 {
+    top: 130px;
+    right: 0;
+    left: auto;
+    width: 26%;
+    height: 198px;
+  }
+
+  .project-collage--apex {
+    height: 300px;
+  }
+
+  .project-collage--apex .collage-item--1 {
+    top: 8px;
+    left: 0;
+    width: 67%;
+    height: 184px;
+  }
+
+  .project-collage--apex .collage-item--2 {
+    top: 104px;
+    right: 0;
+    left: auto;
+    width: 74%;
+    height: 190px;
+  }
+
+  .project-collage--apex .collage-item--3 {
+    top: 86px;
+    left: 55%;
+    width: 29%;
+    height: 174px;
+  }
+
+  .project-collage--trenera {
+    display: flex;
+    height: 306px;
+    gap: 10px;
+    margin-inline: -16px;
+    padding: 14px 16px 12px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: thin;
+  }
+
+  .project-collage--trenera .collage-item {
+    position: static;
+    width: 126px;
+    max-width: none;
+    height: 280px;
+    flex: 0 0 126px;
+    border-radius: 14px;
+    scroll-snap-align: start;
+  }
+
+  .about__copy p + p {
+    margin-top: 20px;
+  }
+
+  .contact-link {
+    min-height: 60px;
+    padding: 17px 18px;
+  }
+
+  .bottom-atmosphere {
+    height: 560px;
+  }
+
+  .bottom-atmosphere img {
+    top: -160px;
+    width: 1040px;
+    height: 526px;
+  }
+}
+
+@media (max-width: 389px) {
+  body {
+    font-size: 16px;
+  }
+
+  .mobile-nav {
+    top: 8px;
+    width: calc(100% - 16px);
+    font-size: 9px;
+  }
+
+  .hero-card {
+    gap: 10px;
+  }
+
+  .hero-card__portrait {
+    margin: -10px 0 -6px -12px;
+  }
+
+  .hero-card__copy {
+    font-size: 15px;
+  }
+
+  .hero-meta {
+    font-size: 12px;
+  }
+
+  .timeline {
+    font-size: 11px;
+  }
+
+  .timeline__year-line {
+    width: 12px;
+    margin-inline: 4px;
+  }
+
+  .contact-link {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

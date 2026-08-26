@@ -1,0 +1,358 @@
+.section-label {
+  color: var(--color-muted);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.muted,
+.about__note {
+  color: var(--color-muted);
+}
+
+.side-nav {
+  position: fixed;
+  z-index: 10;
+  top: 460px;
+  left: max(24px, calc(50% - 696px));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 36px 36px;
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.nav-link {
+  color: var(--color-muted);
+  transition: color var(--transition), transform var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  transform: translateX(2px);
+}
+
+.nav-link.is-active,
+.nav-link[aria-current="location"] {
+  color: var(--color-text);
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+  color: var(--color-text);
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  color: var(--color-accent);
+}
+
+.hero-card {
+  display: flex;
+  width: 100%;
+  min-height: 168px;
+  align-items: center;
+  padding: 18px 24px 18px 34px;
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.hero-card__portrait {
+  position: relative;
+  width: 100px;
+  height: 132px;
+  flex: 0 0 100px;
+  margin-right: -3px;
+  overflow: hidden;
+}
+
+.hero-card__portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 46%;
+  transform: scaleX(-1);
+}
+
+.hero-card__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  letter-spacing: 0.18px;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  color: var(--color-muted);
+  letter-spacing: 0.18px;
+}
+
+.experience p,
+.about p,
+.contacts > p {
+  letter-spacing: 0.18px;
+}
+
+.timeline {
+  display: flex;
+  width: 100%;
+  height: 18px;
+  align-items: center;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.timeline > img {
+  max-width: none;
+}
+
+.timeline--summary {
+  height: 29px;
+}
+
+.timeline-pill {
+  display: inline-flex;
+  height: 29px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-text);
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.timeline__year-line {
+  width: 36px;
+  height: 2px;
+  margin-inline: 10px;
+}
+
+.timeline__trail {
+  min-width: 24px;
+  height: 2px;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.timeline--summary .timeline__trail {
+  margin-left: 0;
+}
+
+.timeline__mode {
+  padding: 4px 8px;
+  text-transform: lowercase;
+}
+
+.timeline--project > span:not(.timeline__mode) {
+  text-transform: uppercase;
+}
+
+.project-collage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.collage-item {
+  position: absolute;
+  max-width: none;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
+
+.project-collage--starta {
+  height: 224px;
+}
+
+.project-collage--starta .collage-item--1 {
+  top: 5px;
+  left: 13px;
+  width: 348px;
+  height: 292px;
+}
+
+.project-collage--starta .collage-item--2 {
+  top: 21px;
+  left: 178px;
+  width: 284px;
+  height: 238px;
+}
+
+.project-collage--starta .collage-item--3 {
+  top: 43px;
+  left: 361px;
+  width: 284px;
+  height: 238px;
+}
+
+.project-collage--starta .collage-item--4 {
+  top: 5px;
+  left: 610px;
+  width: 106px;
+  height: 334px;
+}
+
+.project-collage--jobs {
+  height: 224px;
+}
+
+.project-collage--jobs .collage-item--1 {
+  top: 30px;
+  left: 79px;
+  width: 238px;
+  height: 302px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-collage--jobs .collage-item--2 {
+  top: 85px;
+  left: 277px;
+  width: 117px;
+  height: 453px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  object-position: top;
+}
+
+.project-collage--jobs .collage-item--3 {
+  top: 9px;
+  left: 407px;
+  width: 109px;
+  height: 206px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  object-position: top;
+}
+
+.project-collage--jobs .collage-item--4 {
+  top: 30px;
+  left: 529px;
+  width: 109px;
+  height: 171px;
+  border-radius: 0;
+  object-position: top;
+}
+
+.project-collage--apex {
+  height: 207px;
+}
+
+.project-collage--apex .collage-item--1 {
+  top: 16px;
+  left: 34px;
+  width: 275px;
+  height: 207px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.project-collage--apex .collage-item--2 {
+  top: 16px;
+  left: 379px;
+  width: 303px;
+  height: 238px;
+  box-shadow: none;
+}
+
+.project-collage--apex .collage-item--3 {
+  top: 64px;
+  left: 282px;
+  width: 112px;
+  height: 174px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.project-collage--trenera {
+  height: 286px;
+}
+
+.project-collage--trenera .collage-item {
+  top: 26px;
+  width: 154px;
+  height: 343px;
+  border-radius: 18px;
+  box-shadow: 0 4px 100px rgba(255, 255, 255, 0.5);
+}
+
+.project-collage--trenera .collage-item--1 {
+  left: 33px;
+}
+
+.project-collage--trenera .collage-item--2 {
+  left: 198px;
+}
+
+.project-collage--trenera .collage-item--3 {
+  left: 365px;
+}
+
+.project-collage--trenera .collage-item--4 {
+  left: 529px;
+}
+
+.about__note {
+  width: 100%;
+}
+
+.contact-link {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  letter-spacing: 0.18px;
+  transition: color var(--transition), background-color var(--transition), transform var(--transition);
+}
+
+.contact-link:hover {
+  color: var(--color-surface);
+  transform: translateY(-2px);
+}
+
+.contact-link:active {
+  transform: translateY(0);
+}
+
+.contact-link--telegram {
+  color: var(--color-telegram);
+}
+
+.contact-link--telegram:hover {
+  background: var(--color-telegram);
+}
+
+.contact-link--email {
+  color: var(--color-text);
+}
+
+.contact-link--email:hover {
+  background: var(--color-text);
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mozolyadesign.github.io/alexey-mozolya-portfolio/sitemap.xml

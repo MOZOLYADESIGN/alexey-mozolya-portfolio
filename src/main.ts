@@ -1,0 +1,51 @@
+const sectionIds = ["essence", "experience", "about", "contacts"] as const;
+type SectionId = (typeof sectionIds)[number];
+
+const navigationLinks = Array.from<HTMLAnchorElement>(document.querySelectorAll("[data-nav] a[href^='#']"));
+
+function setActiveSection(id: SectionId) {
+  for (const link of navigationLinks) {
+    const isActive = link.hash === `#${id}`;
+    link.classList.toggle("is-active", isActive);
+    if (isActive) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  }
+}
+
+const sections = sectionIds
+  .map((id) => document.getElementById(id))
+  .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+if ("IntersectionObserver" in window) {
+  const visible = new Map<string, IntersectionObserverEntry>();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.set(entry.target.id, entry);
+        else visible.delete(entry.target.id);
+      }
+
+      const current = Array.from(visible.values()).sort((a, b) => {
+        if (b.intersectionRatio !== a.intersectionRatio) return b.intersectionRatio - a.intersectionRatio;
+        return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top);
+      })[0];
+
+      if (current && sectionIds.includes(current.target.id as SectionId)) {
+        setActiveSection(current.target.id as SectionId);
+      }
+    },
+    {
+      rootMargin: "-32% 0px -34% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+for (const link of navigationLinks) {
+  link.addEventListener("click", () => {
+    const id = link.hash.slice(1) as SectionId;
+    if (sectionIds.includes(id)) setActiveSection(id);
+  });
+}

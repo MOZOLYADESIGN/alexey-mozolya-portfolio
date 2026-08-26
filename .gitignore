@@ -1,9 +1,7 @@
 node_modules
-.next
-out
-playwright-report
-test-results
-.lighthouseci
+dist
+.vite
+screenshots
 *.log
 *.tsbuildinfo
 .DS_Store
