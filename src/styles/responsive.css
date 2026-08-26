@@ -310,15 +310,6 @@
     margin-top: 20px;
   }
 
-  .bottom-atmosphere {
-    height: 560px;
-  }
-
-  .bottom-atmosphere img {
-    top: -160px;
-    width: 1040px;
-    height: 526px;
-  }
 }
 
 @media (max-width: 900px) and (min-width: 641px) {

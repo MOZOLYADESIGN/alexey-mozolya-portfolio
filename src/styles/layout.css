@@ -99,24 +99,3 @@
 .contact-list {
   gap: 12px;
 }
-
-.bottom-atmosphere {
-  position: absolute;
-  z-index: -1;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 687px;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.bottom-atmosphere img {
-  position: absolute;
-  top: -320px;
-  left: 50%;
-  width: 1920px;
-  max-width: none;
-  height: 970px;
-  transform: translateX(-50%) rotate(180deg);
-}
