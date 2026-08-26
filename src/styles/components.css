@@ -445,3 +445,12 @@
   object-fit: contain;
   pointer-events: none;
 }
+
+.site-copyright {
+  width: 100%;
+  margin-top: 22px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+}
