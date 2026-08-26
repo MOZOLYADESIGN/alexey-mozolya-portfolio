@@ -31,6 +31,10 @@
   display: none;
 }
 
+.mobile-nav-toggle {
+  display: none;
+}
+
 .nav-link {
   color: var(--color-muted);
   transition: color var(--transition), transform var(--transition);
