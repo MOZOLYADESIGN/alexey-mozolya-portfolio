@@ -10,6 +10,13 @@
   margin-inline: auto;
 }
 
+@media (min-width: 1280px) {
+  .content-column {
+    margin-right: 0;
+    margin-left: calc(50vw - 358px);
+  }
+}
+
 .hero {
   position: relative;
   min-height: 1080px;

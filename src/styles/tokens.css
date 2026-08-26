@@ -25,6 +25,8 @@
   --color-muted: rgba(0, 0, 0, 0.4);
   --color-accent: #e98800;
   --color-accent-soft: rgba(233, 136, 0, 0.1);
+  --color-hero-accent: #ff9d12;
+  --color-hero-accent-soft: rgba(255, 157, 18, 0.1);
   --color-telegram: #2481cc;
   --content-width: 716px;
   --page-padding: 24px;

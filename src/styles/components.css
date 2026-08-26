@@ -27,7 +27,7 @@
   text-transform: uppercase;
 }
 
-.mobile-nav {
+.mobile-nav-scroll {
   display: none;
 }
 
@@ -46,8 +46,15 @@
   color: var(--color-text);
 }
 
-.hero h1 {
+.hero-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   margin-bottom: 24px;
+}
+
+.hero h1 {
   color: var(--color-text);
   font-size: 40px;
   font-weight: 600;
@@ -57,45 +64,69 @@
 }
 
 .hero h1 span {
-  color: var(--color-accent);
+  color: var(--color-hero-accent);
+}
+
+.hero-heading__sun {
+  width: 48px;
+  max-width: none;
+  height: 48px;
+  flex: 0 0 48px;
 }
 
 .hero-card {
+  position: relative;
   display: flex;
   width: 100%;
   min-height: 168px;
   align-items: center;
   padding: 18px 24px 18px 34px;
+  overflow: hidden;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-soft);
-  color: var(--color-accent);
+  background: var(--color-hero-accent-soft);
+  color: var(--color-hero-accent);
+}
+
+.hero-card__star {
+  position: absolute;
+  z-index: 0;
+  top: -25px;
+  left: -31px;
+  width: 218px;
+  max-width: none;
+  height: 218px;
+  pointer-events: none;
 }
 
 .hero-card__portrait {
   position: relative;
+  z-index: 1;
   width: 100px;
   height: 132px;
   flex: 0 0 100px;
   margin-right: -3px;
   overflow: hidden;
+  transform: scaleX(-1);
 }
 
 .hero-card__portrait img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 46%;
-  transform: scaleX(-1);
+  top: -8.84%;
+  left: -27.66%;
+  width: 155.32%;
+  max-width: none;
+  height: 117.74%;
 }
 
 .hero-card__copy {
+  position: relative;
+  z-index: 1;
   display: flex;
   min-width: 0;
   flex: 1;
   flex-direction: column;
   gap: 16px;
+  font-size: 18px;
   letter-spacing: 0.18px;
 }
 
@@ -319,40 +350,94 @@
   width: 100%;
 }
 
-.contact-link {
+.contact-cta {
+  position: relative;
   display: flex;
-  min-height: 58px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(58.712deg, #000 4.33%, #242424 75.86%);
+  color: #fff;
+}
+
+.contact-cta__star {
+  position: absolute;
+  z-index: 0;
+  top: -258px;
+  left: 283px;
+  width: 688px;
+  max-width: none;
+  height: 688px;
+  pointer-events: none;
+}
+
+.contact-cta__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.contact-cta__title {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.32px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contact-cta__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contact-cta__button {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  border: 1px solid currentColor;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
+  font-size: 18px;
+  font-weight: 400;
   letter-spacing: 0.18px;
-  transition: color var(--transition), background-color var(--transition), transform var(--transition);
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: opacity var(--transition), transform var(--transition);
 }
 
-.contact-link:hover {
-  color: var(--color-surface);
-  transform: translateY(-2px);
+.contact-cta__button:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
 }
 
-.contact-link:active {
+.contact-cta__button:active {
   transform: translateY(0);
 }
 
-.contact-link--telegram {
-  color: var(--color-telegram);
+.contact-cta__button--telegram {
+  background: #fff;
+  color: #000;
 }
 
-.contact-link--telegram:hover {
-  background: var(--color-telegram);
+.contact-cta__button--email {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
-.contact-link--email {
-  color: var(--color-text);
-}
-
-.contact-link--email:hover {
-  background: var(--color-text);
+.contact-cta__portrait {
+  position: absolute;
+  z-index: 1;
+  top: -84px;
+  left: 465px;
+  width: 340px;
+  max-width: none;
+  height: 340px;
+  object-fit: contain;
+  pointer-events: none;
 }

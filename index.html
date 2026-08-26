@@ -61,12 +61,14 @@
           <a class="nav-link" href="#contacts">Контакты</a>
         </nav>
 
-        <nav class="mobile-nav" aria-label="Навигация по странице" data-nav>
-          <a class="nav-link is-active" href="#essence" aria-current="location">Моя суть</a>
-          <a class="nav-link" href="#experience">Опыт</a>
-          <a class="nav-link" href="#about">Обо мне</a>
-          <a class="nav-link" href="#contacts">Контакты</a>
-        </nav>
+        <div class="mobile-nav-scroll">
+          <nav class="mobile-nav" aria-label="Навигация по странице" data-nav>
+            <a class="nav-link is-active" href="#essence" aria-current="location">Моя суть</a>
+            <a class="nav-link" href="#experience">Опыт</a>
+            <a class="nav-link" href="#about">Обо мне</a>
+            <a class="nav-link" href="#contacts">Контакты</a>
+          </nav>
+        </div>
       </header>
 
       <main id="main-content">
@@ -80,12 +82,16 @@
             aria-hidden="true"
           />
           <div class="hero__content content-column">
-            <h1 id="hero-title">Привет, меня зовут <span>Лёша</span></h1>
+            <div class="hero-heading">
+              <h1 id="hero-title">Привет, я <span>Лёша</span></h1>
+              <img class="hero-heading__sun" src="./assets/hero-sun.svg" width="48" height="48" alt="" aria-hidden="true" />
+            </div>
 
             <div class="hero-card">
+              <img class="hero-card__star" src="./assets/hero-star.svg" width="218" height="218" alt="" aria-hidden="true" />
               <div class="hero-card__portrait" aria-hidden="true">
                 <img
-                  src="./assets/hero-portrait.webp"
+                  src="./assets/hero-portrait-default.webp"
                   width="600"
                   height="600"
                   alt=""
@@ -95,7 +101,7 @@
               </div>
               <div class="hero-card__copy">
                 <p>Я дизайнер интерфейсов, продуктов, коммуникационных и маркетинговых материалов, наставник в школе дизайна.</p>
-                <p>Люблю, когда мой труд помогает людям. Пользователи, довольные продуктами, насыщают жизнь вокруг себя чем-то добрым и светлым — это моя цель.</p>
+                <p>Люблю когда мой труд помогает людям. Пользователи, довольные продуктами, насыщают жизнь вокруг себя чем-то добрым и светлым — это моя цель</p>
               </div>
             </div>
 
@@ -112,16 +118,12 @@
             <div class="experience__intro">
               <h2 class="section-label" id="experience-title">Опыт</h2>
               <div class="experience-summary">
-                <div class="timeline timeline--summary" aria-label="С 2022 года по настоящее время, более четырёх лет">
-                  <span class="timeline-pill">2022</span>
-                  <img src="./assets/timeline-connector.svg" width="28" height="2" alt="" aria-hidden="true" />
-                  <span class="timeline-pill">Настоящее время</span>
-                  <img src="./assets/timeline-connector.svg" width="28" height="2" alt="" aria-hidden="true" />
+                <div class="timeline timeline--summary" aria-label="Более четырёх лет опыта">
                   <span class="timeline-pill">4+ года</span>
                   <img class="timeline__trail" src="./assets/timeline-summary-line.svg" width="280" height="2" alt="" aria-hidden="true" />
                 </div>
                 <p>
-                  За время работы с разными студиями поучаствовал в проектах со всей России — дизайн сайтов, админ-панелей, отдельных флоу, маркетинговых материалов, креативов и всего, что касается диджитала.
+                  За время работы с разными студиями поучаствовал в работе над проектами со всей России — дизайн сайтов, админ панелей, отдельных флоу, маркетинговых материалов, креативов и всего что касается диджитала
                 </p>
               </div>
             </div>
@@ -238,18 +240,25 @@
 
           <footer class="contacts" id="contacts" aria-labelledby="contacts-title" data-section="contacts" data-animate>
             <h2 class="section-label" id="contacts-title">Контакты</h2>
-            <p>
-              Давайте сделаем что-то крутое вместе. Напишите, если у вас есть идея для проекта, вы хотите позвать меня в команду или нужна помощь с дизайном, концепцией или бренд-стратегией.
-            </p>
-            <div class="contact-list">
-              <a class="contact-link contact-link--telegram" href="https://t.me/poofex" target="_blank" rel="noreferrer">
-                <span>Телеграм</span>
-                <span>@poofex</span>
-              </a>
-              <a class="contact-link contact-link--email" href="mailto:mozolya000@gmail.com">
-                <span>Почта</span>
-                <span>mozolya000@gmail.com</span>
-              </a>
+            <div class="contact-cta">
+              <img class="contact-cta__star" src="./assets/cta-star.svg" width="688" height="688" alt="" aria-hidden="true" />
+              <div class="contact-cta__content">
+                <p class="contact-cta__title">Давайте сделаем<br />что-то крутое вместе</p>
+                <div class="contact-cta__actions">
+                  <a class="contact-cta__button contact-cta__button--telegram" href="https://t.me/poofex" target="_blank" rel="noreferrer">Связаться в телеграме</a>
+                  <a class="contact-cta__button contact-cta__button--email" href="mailto:mozolya000@gmail.com">Связаться по почте</a>
+                </div>
+              </div>
+              <img
+                class="contact-cta__portrait"
+                src="./assets/cta-portrait-spy.webp"
+                width="900"
+                height="900"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </footer>
         </div>
