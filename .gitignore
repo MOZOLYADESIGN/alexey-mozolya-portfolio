@@ -2,6 +2,7 @@ node_modules
 dist
 .vite
 screenshots
+deliverables
 *.log
 *.tsbuildinfo
 .dev.vars
