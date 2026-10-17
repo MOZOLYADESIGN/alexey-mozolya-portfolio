@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const distUrl = new URL("../dist/", import.meta.url);
 const distPath = fileURLToPath(distUrl);
-const required = ["index.html", "robots.txt", "sitemap.xml"];
+const required = ["index.html", "playground.html", "robots.txt", "sitemap.xml"];
 
 await Promise.all(required.map((file) => access(new URL(file, distUrl))));
 
@@ -16,7 +16,8 @@ for (const token of forbidden) {
   if (html.includes(token)) throw new Error(`Forbidden production token: ${token}`);
 }
 
-if (!html.includes("/alexey-mozolya-portfolio/")) {
+const base = process.env.SITE_BASE || `/${process.env.GITHUB_REPOSITORY?.split("/")[1] || "alexey-mozolya-portfolio"}/`;
+if (!html.includes(base)) {
   throw new Error("Repository base path is missing from the production HTML.");
 }
 
@@ -73,7 +74,7 @@ const relativeFiles = new Set(files.map(({ path }) => path.slice(distPath.length
 for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
   const reference = match[1];
   if (/^(?:#|mailto:|https?:|data:)/.test(reference)) continue;
-  const relative = reference.replace(/^\.\//, "").replace(/^\/alexey-mozolya-portfolio\//, "");
+  const relative = reference.replace(/^\.\//, "").replace(new RegExp(`^${base}`), "");
   if (!relativeFiles.has(relative)) throw new Error(`Broken local production reference: ${reference}`);
 }
 

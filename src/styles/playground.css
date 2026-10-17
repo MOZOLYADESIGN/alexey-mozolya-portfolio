@@ -1,0 +1,34 @@
+.side-nav .playground-link { margin-top: 24px; padding-top: 20px; border-top: 1px solid #dedee3; }
+.playground-mobile { display: none; }
+.playground-frame { min-height: 100svh; }
+.playground-page { padding-top: 150px; padding-bottom: 64px; }
+.playground-page h1 { margin: 18px 0; font-size: clamp(36px, 5vw, 56px); letter-spacing: -2px; }
+.playground-intro { max-width: 510px; margin-bottom: 32px; color: var(--color-muted); }
+.scene-shell { position: relative; width: 100%; height: min(65vh, 620px); min-height: 420px; overflow: hidden; border: 1px solid #e5e2dc; border-radius: 24px; background: #eee9e2; }
+#workspace-scene { display: block; width: 100%; height: 100%; }
+.scene-status { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; padding: 28px; text-align: center; background: #eee9e2; }
+.scene-status[hidden], .scene-status button[hidden] { display: none; }
+.scene-status button { padding: 12px 20px; border: 0; border-radius: 16px; background: #111; color: white; font: inherit; cursor: pointer; }
+.scene-caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 13px; color: var(--color-muted); }
+.playground-back { display: inline-block; margin-top: 32px; }
+@media (max-width: 1279px) {
+  .playground-mobile { display: flex; align-items: center; justify-content: center; width: min(100%, 420px); min-height: 44px; margin: 8px auto 0; border-radius: 18px; background: #fff; box-shadow: var(--shadow-card); font-size: 14px; }
+  .playground-mobile[aria-current="page"] { background: #111; color: #fff; }
+  .playground-page { padding-top: 175px; }
+  html { scroll-padding-top: 150px; }
+}
+@media (max-width: 600px) {
+  .scene-shell { height: 480px; min-height: 0; border-radius: 20px; }
+  .scene-caption { flex-direction: column; gap: 4px; }
+}
+@media (max-width: 405px) {
+  .playground-mobile { width: min(100%, 260px); margin-top: 0; }
+  .mobile-nav-scroll.is-open { background: var(--color-bg); padding-bottom: 16px; }
+}
+
+@media (max-width: 405px) {
+.mobile-nav-toggle { display: none; }
+.mobile-nav { display: flex; flex-direction: row; width: 100%; gap: 4px; padding: 6px; font-size: 11px; }
+.mobile-nav .nav-link, .mobile-nav .nav-link.is-active { flex: 1; width: auto; min-height: 44px; padding: 8px 4px; }
+.playground-mobile { width: 100%; }
+}

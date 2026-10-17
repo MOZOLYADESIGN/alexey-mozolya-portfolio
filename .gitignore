@@ -7,3 +7,6 @@ deliverables
 *.tsbuildinfo
 .dev.vars
 .DS_Store
+
+.playwright-cli/
+output/

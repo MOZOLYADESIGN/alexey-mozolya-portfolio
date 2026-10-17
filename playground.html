@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- security-policy -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#fdfdff" />
+    <meta
+      name="description"
+      content="{{seo.description}}"
+    />
+    <meta name="author" content="{{identity.name}}" />
+    <link rel="canonical" href="{{seo.canonical}}" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="{{seo.shareTitle}}" />
+    <meta
+      property="og:description"
+      content="{{seo.shareDescription}}"
+    />
+    <meta property="og:url" content="{{seo.canonical}}" />
+    <meta property="og:image" content="{{seo.ogImage}}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{seo.ogImageAlt}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{seo.shareTitle}}" />
+    <meta
+      name="twitter:description"
+      content="{{seo.shareDescription}}"
+    />
+    <meta name="twitter:image" content="{{seo.ogImage}}" />
+    <title>Плейграунд — Алексей Мозоля</title>
+    <link rel="stylesheet" href="/src/styles/index.css" />
+    <script type="application/ld+json">
+{{structuredData}}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+
+    <div class="site-frame playground-frame">
+      <header>
+        <nav class="side-nav" aria-label="Навигация по странице" data-nav>
+          <a class="nav-link" href="./index.html#essence">{{navigation.essence}}</a>
+          <a class="nav-link" href="./index.html#experience">{{navigation.experience}}</a>
+          <a class="nav-link" href="./index.html#about">{{navigation.about}}</a>
+          <a class="nav-link" href="./index.html#contacts">{{navigation.contacts}}</a>
+          <a class="nav-link playground-link is-active" aria-current="page" href="./playground.html">Плейграунд ↗</a>
+        </nav>
+
+        <div class="mobile-nav-scroll">
+          <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Открыть меню">
+            <span class="mobile-nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>Меню</span>
+          </button>
+          <nav class="mobile-nav" id="mobile-navigation" aria-label="Навигация по странице" data-nav>
+            <a class="nav-link" href="./index.html#essence">{{navigation.essence}}</a>
+            <a class="nav-link" href="./index.html#experience">{{navigation.experience}}</a>
+            <a class="nav-link" href="./index.html#about">{{navigation.about}}</a>
+            <a class="nav-link" href="./index.html#contacts">{{navigation.contacts}}</a>
+          </nav>
+          <a class="playground-mobile" href="./playground.html" aria-current="page">Плейграунд ↗</a>
+        </div>
+      </header>
+
+      <main id="main-content" class="playground-page content-column">
+<p class="section-label">Место для экспериментов · 01</p>
+<h1>Плейграунд</h1>
+<p class="playground-intro">Моё рабочее место в 3D. Маленький мир, в котором рождаются большие идеи.</p>
+<section class="scene-shell" aria-label="3D-диорама рабочего места" aria-busy="true">
+<canvas id="workspace-scene" aria-label="Рабочий стол, кресло, техника и две фигурки" tabindex="0"></canvas>
+<div class="scene-status" role="status"><span>Загружаю рабочее место…</span><button type="button" hidden>Попробовать снова</button></div>
+</section>
+<p class="scene-caption">Workspace Diorama <span>Дерево, свет и немного характера</span></p>
+<a class="playground-back" href="./index.html">← Вернуться к портфолио</a>
+</main>
+
+    </div>
+
+    <script type="module" src="/src/playground.ts"></script>
+  </body>
+</html>
