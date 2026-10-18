@@ -68,15 +68,24 @@
       </header>
 
       <main id="main-content" class="playground-page content-column">
-<p class="section-label">Место для экспериментов · 01</p>
 <h1>Плейграунд</h1>
-<p class="playground-intro">Моё рабочее место в 3D. Маленький мир, в котором рождаются большие идеи.</p>
+<p class="playground-intro">Это мой стол, за которым я сейчас сижу. На полу тусит кошка Сэми. Этот раздел нужен для того чтобы показать мои эксперименты в дизайне, вайбкодинге и всём, что меня описывает и через что я выражаюсь.</p>
 <section class="scene-shell" aria-label="3D-диорама рабочего места" aria-busy="true">
-<canvas id="workspace-scene" aria-label="Рабочий стол, кресло, техника и две фигурки" tabindex="0"></canvas>
+<canvas id="workspace-scene" aria-label="Интерактивная комната: стол, кресло, техника, картины и кошка Сэми. Нажмите на предмет, чтобы запустить анимацию." tabindex="0"></canvas>
 <div class="scene-status" role="status"><span>Загружаю рабочее место…</span><button type="button" hidden>Попробовать снова</button></div>
 </section>
-<p class="scene-caption">Workspace Diorama <span>Дерево, свет и немного характера</span></p>
-<a class="playground-back" href="./index.html">← Вернуться к портфолио</a>
+<a class="playground-back contact-cta__button contact-cta__button--telegram" href="./index.html">← Вернуться к портфолио</a>
+<section class="contact-cta playground-cta" aria-labelledby="playground-cta-title">
+  <img class="contact-cta__star" src="./assets/cta-star.svg" width="688" height="688" alt="" aria-hidden="true" />
+  <div class="contact-cta__content">
+    <h2 class="contact-cta__title" id="playground-cta-title">Эксперименты пока закончились</h2>
+    <p class="playground-cta__description">Если хочешь предложить идею для эксперимента в любом формате — я буду рад</p>
+    <div class="contact-cta__actions">
+      <a class="contact-cta__button contact-cta__button--telegram" href="{{contacts.telegram.url}}" target="_blank" rel="noopener noreferrer">Обсудить в телеграме</a>
+    </div>
+  </div>
+  <img class="contact-cta__portrait" src="./assets/cta-portrait-wizard.webp" width="900" height="900" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+</section>
 </main>
 
     </div>

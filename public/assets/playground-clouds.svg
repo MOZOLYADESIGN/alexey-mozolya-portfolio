@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" fill="none">
+ <defs><filter id="soft" x="-30%" y="-50%" width="160%" height="200%"><feGaussianBlur stdDeviation="9"/></filter><linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#becbdb" stop-opacity=".6"/></linearGradient></defs>
+ <g filter="url(#soft)" fill="url(#cloud)" opacity=".84">
+  <g transform="translate(0 65)"><ellipse cx="155" cy="195" rx="260" ry="65"/><ellipse cx="90" cy="150" rx="98" ry="80"/><ellipse cx="215" cy="125" rx="125" ry="110"/><ellipse cx="340" cy="172" rx="85" ry="60"/></g>
+  <g transform="translate(750 80)"><ellipse cx="235" cy="180" rx="255" ry="65"/><ellipse cx="135" cy="140" rx="85" ry="75"/><ellipse cx="250" cy="110" rx="110" ry="100"/><ellipse cx="355" cy="145" rx="80" ry="75"/></g>
+  <g transform="translate(-100 590)"><ellipse cx="180" cy="185" rx="225" ry="66"/><ellipse cx="75" cy="135" rx="95" ry="78"/><ellipse cx="205" cy="115" rx="106" ry="100"/><ellipse cx="310" cy="160" rx="80" ry="60"/></g>
+  <g transform="translate(770 630)"><ellipse cx="220" cy="180" rx="250" ry="70"/><ellipse cx="90" cy="140" rx="90" ry="80"/><ellipse cx="215" cy="110" rx="120" ry="100"/><ellipse cx="345" cy="145" rx="95" ry="75"/></g>
+ </g>
+</svg>

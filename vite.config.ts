@@ -31,7 +31,7 @@ export default defineConfig(({ command }) => ({
           "media-src 'none'",
           "object-src 'none'",
           // Exact hashes of Spline's bridge and the reviewed scene interaction script.
-          `script-src 'self' 'sha256-${structuredDataHash}'${isPlayground ? " 'wasm-unsafe-eval' 'sha256-0UVr50lzkxzYXLwyEneGAr80ssoNoJv/7hF1f1Y3P0w=' 'sha256-Z2yGGPJHzX8ajJe0GJjeqTg1WcCBxRjZJ5NPmB2OSFY='" : ""}`,
+          `script-src 'self' 'sha256-${structuredDataHash}'${isPlayground ? " 'wasm-unsafe-eval' 'sha256-0UVr50lzkxzYXLwyEneGAr80ssoNoJv/7hF1f1Y3P0w=' 'sha256-aMtX2Swb5JzMr/TzFB5n6qaKgKMmXyfpGB9sRXGz70c='" : ""}`,
           "script-src-attr 'none'",
           "style-src 'self'",
           "style-src-attr 'none'",
