@@ -16,7 +16,7 @@
     "check": "npm run build && node scripts/validate-build.mjs && npm run cms:check"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "vite": "8.2.2"
   },
   "dependencies": {
