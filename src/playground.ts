@@ -16,7 +16,7 @@ async function loadScene() {
   try {
     scene?.dispose();
     scene = new Application(canvas);
-    await scene.load('https://prod.spline.design/JoyvfF9wq5yyaDam/scene.splinecode');
+    await scene.load('https://prod.spline.design/JoyvfF9wq5yyaDam/scene.splinecode?v=2026-10-18-room-v2');
     status.hidden = true;
     shell.dataset.loaded = 'true';
   } catch {
