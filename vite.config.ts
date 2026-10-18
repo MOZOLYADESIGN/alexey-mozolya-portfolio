@@ -22,7 +22,7 @@ export default defineConfig(({ command }) => ({
         const policy = [
           "default-src 'self'",
           "base-uri 'self'",
-          `connect-src ${connectSources}${isPlayground ? " https://prod.spline.design https://*.spline.design https://*.splinetool.com" : ""}`,
+          `connect-src ${connectSources}${isPlayground ? " https://prod.spline.design https://*.spline.design https://*.splinetool.com https://www.gstatic.com/draco/" : ""}`,
           "font-src 'self'",
           "form-action 'none'",
           "frame-src 'none'",
@@ -30,7 +30,8 @@ export default defineConfig(({ command }) => ({
           "manifest-src 'self'",
           "media-src 'none'",
           "object-src 'none'",
-          `script-src 'self' 'sha256-${structuredDataHash}'`,
+          // Exact hashes of Spline's bridge and the reviewed scene interaction script.
+          `script-src 'self' 'sha256-${structuredDataHash}'${isPlayground ? " 'wasm-unsafe-eval' 'sha256-0UVr50lzkxzYXLwyEneGAr80ssoNoJv/7hF1f1Y3P0w=' 'sha256-Z2yGGPJHzX8ajJe0GJjeqTg1WcCBxRjZJ5NPmB2OSFY='" : ""}`,
           "script-src-attr 'none'",
           "style-src 'self'",
           "style-src-attr 'none'",
